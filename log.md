@@ -1,4 +1,5 @@
-### Cache flush
+### Cache flush in ARM
+#### In ARM trusted firmware
 L1 and L2 cache flush in ARM (dcsw_flush_level1/2):
 Discussion in https://community.arm.com/developer/ip-products/processors/f/cortex-a-forum/7271/is-it-necessary-for-arm-v8-soc-to-flush-l2-cache-to-dram
 Code in https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/cpus/aarch64/cortex_a57.S#L561
@@ -10,7 +11,7 @@ https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b
 
 dc instruction is used for cache op = cisw on specified level
 
-#### 16.66 DC
+##### 16.66 DC
 Data Cache operation.
 
 This instruction is an alias of SYS.
@@ -33,7 +34,7 @@ Is a 3-bit unsigned immediate, in the range 0 to 7.
 Xt
 Is the 64-bit name of the general-purpose source register.
 
-#### dc op explanation
+##### dc op explanation
 http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0024a/BABJDBHI.html
 11.5. Cache maintenance
 It is sometimes necessary for software to clean or invalidate a cache. This might be required when the contents of external memory have been changed and it is necessary to remove stale data from the cache. It can also be required after MMU-related activity such as changing access permissions, cache policies, or virtual to Physical Address mappings, or when I and D-caches must be synchronized for dynamically generated code such as JIT-compilers and dynamic library loaders.
@@ -88,5 +89,14 @@ IVAU	Invalidate by Virtual Address to Point of Unification	ICIMVAU
  */
  
 https://github.com/torvalds/linux/blob/fa3d493f7a573b4e4e2538486e912093a0161c1b/arch/arm64/mm/cache.S#L110
-Macro dcache_by_line_op
+
+Macro dcache_by_line_op defined in:
 https://elixir.bootlin.com/linux/v4.14/source/arch/arm64/include/asm/assembler.h#L341
+
+
+### Plan of FPGA testing flushx
+Change Rocketchip to flushx branch.
+Compile and run normal programs to make sure flushx hardware change does not affect others.
+Create a test program, based on some simple benchmark; add volatile inline assembly flushx. Use flushx to replace the fence.i? No, unless we have operand to configure on/off of RF flush, or it's safe to assume the GPR is not live anymore.
+Compile and put new program into system and run.
+Consider adding flushx in Operating System.
