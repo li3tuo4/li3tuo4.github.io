@@ -8,7 +8,9 @@ ARM's ATF (do_dcsw_op macro): https://github.com/ARM-software/arm-trusted-firmwa
 The first input to do_dcsw_op is "x0: The operation type (0-2), as defined in arch.h" defined in:
 https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/include/arch/aarch64/arch.h#L119
 
-16.66 DC
+dc instruction is used for cache op = cisw on specified level
+
+#### 16.66 DC
 Data Cache operation.
 
 This instruction is an alias of SYS.
