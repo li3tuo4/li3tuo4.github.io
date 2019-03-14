@@ -1,6 +1,9 @@
 ### Cache flush
 L1 and L2 cache flush in ARM (dcsw_flush_level1/2):
-https://community.arm.com/developer/ip-products/processors/f/cortex-a-forum/7271/is-it-necessary-for-arm-v8-soc-to-flush-l2-cache-to-dram
+Discussion in https://community.arm.com/developer/ip-products/processors/f/cortex-a-forum/7271/is-it-necessary-for-arm-v8-soc-to-flush-l2-cache-to-dram
+Code in https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/cpus/aarch64/cortex_a57.S#L561
 
-ARM's ATF (do_dcsw_op macro):
-https://github.com/ARM-software/arm-trusted-firmware/blob/master/lib/aarch64/cache_helpers.S
+ARM's ATF (do_dcsw_op macro): https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/aarch64/cache_helpers.S#L90
+
+The first input to do_dcsw_op is "x0: The operation type (0-2), as defined in arch.h" defined in:
+https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/include/arch/aarch64/arch.h#L119
