@@ -32,3 +32,47 @@ op2
 Is a 3-bit unsigned immediate, in the range 0 to 7.
 Xt
 Is the 64-bit name of the general-purpose source register.
+
+#### dc op explanation
+http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0024a/BABJDBHI.html
+11.5. Cache maintenance
+It is sometimes necessary for software to clean or invalidate a cache. This might be required when the contents of external memory have been changed and it is necessary to remove stale data from the cache. It can also be required after MMU-related activity such as changing access permissions, cache policies, or virtual to Physical Address mappings, or when I and D-caches must be synchronized for dynamically generated code such as JIT-compilers and dynamic library loaders.
+
+Invalidation of a cache or cache line means to clear it of data, by clearing the valid bit of one or more cache lines. The cache must always be invalidated after reset as its contents are undefined. This can also be viewed as a way of making changes in the memory domain outside the cache visible to the user of the cache.
+
+Cleaning a cache or cache line means writing the contents of cache lines that are marked as dirty, out to the next level of cache, or to main memory, and clearing the dirty bits in the cache line. This makes the contents of the cache line coherent with the next level of the cache or memory system. This is only applicable for data caches in which a write-back policy is used. This is also a way of making changes in the cache visible to the user of the outer memory domain, but is only available for data cache.
+
+Zero. This zeroes a block of memory within the cache, without the need to first of all read its contents from the outer domain. This is only available for data cache.
+
+For each of these operations, you can select which of the entries the operation should apply to:
+
+All, means the entire cache and is not available for the data or unified cache
+
+Modified Virtual Address (MVA), another name for VA, is the cache line that contains a specific Virtual Address
+
+Set or Way is a specific cache line selected by its position within the cache structure
+
+AArch64 cache maintenance operations are performed using instructions which have the following general form:
+
+  <cache> <operation>{, <Xt>}
+A number of operations are available.
+
+Table 11.1. Data cache, instruction cache, and unified cache operations
+
+Cache	Operation	Description	
+AArch32
+
+Equivalent
+
+DC	CISW	Clean and invalidate by Set/Way	DCCISW
+CIVAC	Clean and Invalidate by Virtual Address to Point of Coherency	DCCIMVAC
+CSW	Clean by Set/Way	DCCSW
+CVAC	Clean by Virtual Address to Point of Coherency	DCCMVAC
+CVAU	Clean by Virtual Address to Point of Unification	DCCMVAU
+ISW	Invalidate by Set/Way	DCISW
+IVAC	Invalidate by Virtual Address, to Point of Coherency	DCIMVAC
+DC	ZVA	Cache zero by Virtual Address	-
+IC	IALLUIS	Invalidate all, to Point of Unification, Inner Sharable	ICIALLUIS
+IALLU	Invalidate all, to Point of Unification, Inner Shareable	ICIALLU
+IVAU	Invalidate by Virtual Address to Point of Unification	ICIMVAU
+
