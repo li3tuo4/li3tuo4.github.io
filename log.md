@@ -76,3 +76,17 @@ IC	IALLUIS	Invalidate all, to Point of Unification, Inner Sharable	ICIALLUIS
 IALLU	Invalidate all, to Point of Unification, Inner Shareable	ICIALLU
 IVAU	Invalidate by Virtual Address to Point of Unification	ICIMVAU
 
+#### How ARM Linux uses cache flush
+/*
+ *	__flush_dcache_area(kaddr, size)
+ *
+ *	Ensure that any D-cache lines for the interval [kaddr, kaddr+size)
+ *	are cleaned and invalidated to the PoC.
+ *
+ *	- kaddr   - kernel address
+ *	- size    - size in question
+ */
+ 
+https://github.com/torvalds/linux/blob/fa3d493f7a573b4e4e2538486e912093a0161c1b/arch/arm64/mm/cache.S#L110
+Macro dcache_by_line_op
+https://elixir.bootlin.com/linux/v4.14/source/arch/arm64/include/asm/assembler.h#L341
