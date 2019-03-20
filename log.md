@@ -34,6 +34,11 @@ Is a 3-bit unsigned immediate, in the range 0 to 7.
 Xt
 Is the 64-bit name of the general-purpose source register.
 
+####Demo flushx
+If we do a ecall in user program, we will get to this interrupt handler code:https://github.com/li3tuo4/riscv-pk-zcu/blob/917baf3506d82884a496cc41a1e26c0bb576da41/machine/mentry.S#L97
+
+So, I guess I will add the flushx here after the context is saved!
+
 ##### dc op explanation
 http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0024a/BABJDBHI.html
 11.5. Cache maintenance
