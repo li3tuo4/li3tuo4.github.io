@@ -105,3 +105,11 @@ Compile and run normal programs to make sure flushx hardware change does not aff
 Create a test program, based on some simple benchmark; add volatile inline assembly flushx. Use flushx to replace the fence.i? No, unless we have operand to configure on/off of RF flush, or it's safe to assume the GPR is not live anymore.
 Compile and put new program into system and run.
 Consider adding flushx in Operating System.
+
+#### Where to add flushx in Linux
+Trap entry is at:
+https://github.com/westerndigitalcorporation/RISC-V-Linux/blob/13cb16d5e8e11ebca490cad50cc5abbd222839a1/linux/arch/riscv/kernel/entry.S#L147
+
+syscall can be made via standard SBI, which handles ecall and arguments:
+https://github.com/riscv/riscv-linux/blob/32b1573d1f118844d859341d095e005ca5ba572e/arch/riscv/include/asm/sbi.h#L30
+
