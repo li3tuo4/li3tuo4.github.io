@@ -126,3 +126,46 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
 - [ ] Test iTLB flush
 - [ ] Dev dTLB flush
 - [ ] Test dTLB flush
+
+#### Problem 1 about M_SFENCE in pipeline
+```scala
+ // on pipeline flushes, cause mem_npc to hold the sequential npc, which
+  // will drive the W-stage npc mux
+  when (mem_reg_valid && mem_reg_flush_pipe) {
+    mem_reg_sfence := false
+  }.elsewhen (ex_pc_valid) {
+    mem_ctrl := ex_ctrl //Tuo only if mem_reg_flush_pipe is false, pipe regs will propagate
+    mem_reg_rvc := ex_reg_rvc
+    mem_reg_load := ex_ctrl.mem && isRead(ex_ctrl.mem_cmd)
+    mem_reg_store := ex_ctrl.mem && isWrite(ex_ctrl.mem_cmd)
+    mem_reg_sfence := ex_sfence
+    mem_reg_btb_resp := ex_reg_btb_resp
+    mem_reg_flush_pipe := ex_reg_flush_pipe
+    mem_reg_slow_bypass := ex_slow_bypass
+
+    mem_reg_cause := ex_cause
+    mem_reg_inst := ex_reg_inst
+    mem_reg_raw_inst := ex_reg_raw_inst
+    mem_reg_pc := ex_reg_pc
+    mem_reg_wdata := alu.io.out
+    mem_br_taken := alu.io.cmp_out
+
+    //TODO Tuo ex_sfence affects mem_reg_rs2 generation
+    when (ex_ctrl.rxs2 && (ex_ctrl.mem || ex_ctrl.rocc || ex_sfence)) {
+      val typ = Mux(ex_ctrl.rocc, log2Ceil(xLen/8).U, ex_ctrl.mem_type)
+      mem_reg_rs2 := new StoreGen(typ, 0.U, ex_rs(1), coreDataBytes).data
+    }
+    when (ex_ctrl.jalr && csr.io.status.debug) {
+      // flush I$ on D-mode JALR to effect uncached fetch without D$ flush
+      mem_ctrl.fence_i := true
+      mem_reg_flush_pipe := true
+    }
+  }
+  ```
+  `mem_reg_flush_pipe` will reset `mem_reg_sfence`.
+  
+  #### Found some discussion about cache control instruction proposals in RISC-V forums
+  
+  [draft6](https://groups.google.com/a/groups.riscv.org/forum/#!msg/isa-dev/qXbzqaQbDXU/Hs1AO9xDCQAJ)
+  - [ ] Have a read! :sweat_smile:
+  
