@@ -1,75 +1,76 @@
 ### Cache flush in ARM
 #### In ARM trusted firmware
 L1 and L2 cache flush in ARM (dcsw_flush_level1/2):
-Discussion in https://community.arm.com/developer/ip-products/processors/f/cortex-a-forum/7271/is-it-necessary-for-arm-v8-soc-to-flush-l2-cache-to-dram
-Code in https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/cpus/aarch64/cortex_a57.S#L561
+Discussion in [ARM forum](https://community.arm.com/developer/ip-products/processors/f/cortex-a-forum/7271/is-it-necessary-for-arm-v8-soc-to-flush-l2-cache-to-dram)
+Code in [cortext_a57.S](https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/cpus/aarch64/cortex_a57.S#L561)
 
-ARM's ATF (do_dcsw_op macro): https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/aarch64/cache_helpers.S#L90
+ARM's ATF (do_dcsw_op macro): [cache_helper.S](https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/lib/aarch64/cache_helpers.S#L90)
 
 The first input to do_dcsw_op is "x0: The operation type (0-2), as defined in arch.h" defined in:
-https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/include/arch/aarch64/arch.h#L119
+[arch.h](https://github.com/ARM-software/arm-trusted-firmware/blob/620d9832f96ffcaf86d38b703ca913438d6eea7c/include/arch/aarch64/arch.h#L119)
 
 dc instruction is used for cache op = cisw on specified level
 
 ##### 16.66 DC
-Data Cache operation.
 
-This instruction is an alias of SYS.
+>Data Cache operation.
 
-The equivalent instruction is SYS #op1, C7, Cm, #op2, Xt.
+>This instruction is an alias of SYS.
 
-Syntax
-DC <dc_op>, Xt
+>The equivalent instruction is SYS #op1, C7, Cm, #op2, Xt.
 
-Where:
+>Syntax
+`DC <dc_op>, Xt`
 
-<dc_op>
-Is a DC instruction name, as listed for the DC system instruction group, and can be one of the values shown in Usage.
-op1
-Is a 3-bit unsigned immediate, in the range 0 to 7.
-Cm
-Is a name Cm, with m in the range 0 to 15.
-op2
-Is a 3-bit unsigned immediate, in the range 0 to 7.
-Xt
-Is the 64-bit name of the general-purpose source register.
+>Where:
 
-####Demo flushx
-If we do a ecall in user program, we will get to this interrupt handler code:https://github.com/li3tuo4/riscv-pk-zcu/blob/917baf3506d82884a496cc41a1e26c0bb576da41/machine/mentry.S#L97
+`<dc_op>`
+>Is a DC instruction name, as listed for the DC system instruction group, and can be one of the values shown in Usage.
+`op1`
+>Is a 3-bit unsigned immediate, in the range 0 to 7.
+`Cm`
+>Is a name Cm, with m in the range 0 to 15.
+`op2`
+>Is a 3-bit unsigned immediate, in the range 0 to 7.
+`Xt`
+>Is the 64-bit name of the general-purpose source register.
+
+#### Demo flushx
+If we do a ecall in user program, we will get to this interrupt handler code: [mentry.S](https://github.com/li3tuo4/riscv-pk-zcu/blob/917baf3506d82884a496cc41a1e26c0bb576da41/machine/mentry.S#L97)
 
 So, I guess I will add the flushx here after the context is saved!
 
 ##### dc op explanation
-http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0024a/BABJDBHI.html
-11.5. Cache maintenance
-It is sometimes necessary for software to clean or invalidate a cache. This might be required when the contents of external memory have been changed and it is necessary to remove stale data from the cache. It can also be required after MMU-related activity such as changing access permissions, cache policies, or virtual to Physical Address mappings, or when I and D-caches must be synchronized for dynamically generated code such as JIT-compilers and dynamic library loaders.
+Discussed in [ARM infocenter](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0024a/BABJDBHI.html)
+>11.5. Cache maintenance
+>It is sometimes necessary for software to clean or invalidate a cache. This might be required when the contents of external memory have been changed and it is necessary to remove stale data from the cache. It can also be required after MMU-related activity such as changing access permissions, cache policies, or virtual to Physical Address mappings, or when I and D-caches must be synchronized for dynamically generated code such as JIT-compilers and dynamic library loaders.
 
-Invalidation of a cache or cache line means to clear it of data, by clearing the valid bit of one or more cache lines. The cache must always be invalidated after reset as its contents are undefined. This can also be viewed as a way of making changes in the memory domain outside the cache visible to the user of the cache.
+>Invalidation of a cache or cache line means to clear it of data, by clearing the valid bit of one or more cache lines. The cache must always be invalidated after reset as its contents are undefined. This can also be viewed as a way of making changes in the memory domain outside the cache visible to the user of the cache.
 
-Cleaning a cache or cache line means writing the contents of cache lines that are marked as dirty, out to the next level of cache, or to main memory, and clearing the dirty bits in the cache line. This makes the contents of the cache line coherent with the next level of the cache or memory system. This is only applicable for data caches in which a write-back policy is used. This is also a way of making changes in the cache visible to the user of the outer memory domain, but is only available for data cache.
+>Cleaning a cache or cache line means writing the contents of cache lines that are marked as dirty, out to the next level of cache, or to main memory, and clearing the dirty bits in the cache line. This makes the contents of the cache line coherent with the next level of the cache or memory system. This is only applicable for data caches in which a write-back policy is used. This is also a way of making changes in the cache visible to the user of the outer memory domain, but is only available for data cache.
 
-Zero. This zeroes a block of memory within the cache, without the need to first of all read its contents from the outer domain. This is only available for data cache.
+>Zero. This zeroes a block of memory within the cache, without the need to first of all read its contents from the outer domain. This is only available for data cache.
 
-For each of these operations, you can select which of the entries the operation should apply to:
+>For each of these operations, you can select which of the entries the operation should apply to:
 
-All, means the entire cache and is not available for the data or unified cache
+>All, means the entire cache and is not available for the data or unified cache
 
-Modified Virtual Address (MVA), another name for VA, is the cache line that contains a specific Virtual Address
+>Modified Virtual Address (MVA), another name for VA, is the cache line that contains a specific Virtual Address
 
-Set or Way is a specific cache line selected by its position within the cache structure
+>Set or Way is a specific cache line selected by its position within the cache structure
 
-AArch64 cache maintenance operations are performed using instructions which have the following general form:
+>AArch64 cache maintenance operations are performed using instructions which have the following general form:
 
-  <cache> <operation>{, <Xt>}
-A number of operations are available.
+  `<cache> <operation>{, <Xt>}`
+>A number of operations are available.
 
-Table 11.1. Data cache, instruction cache, and unified cache operations
+>Table 11.1. Data cache, instruction cache, and unified cache operations
 
-Cache	Operation	Description	
-AArch32
+>Cache	Operation	Description	
+>AArch32
 
-Equivalent
-
+>Equivalent
+```
 DC	CISW	Clean and invalidate by Set/Way	DCCISW
 CIVAC	Clean and Invalidate by Virtual Address to Point of Coherency	DCCIMVAC
 CSW	Clean by Set/Way	DCCSW
@@ -81,9 +82,9 @@ DC	ZVA	Cache zero by Virtual Address	-
 IC	IALLUIS	Invalidate all, to Point of Unification, Inner Sharable	ICIALLUIS
 IALLU	Invalidate all, to Point of Unification, Inner Shareable	ICIALLU
 IVAU	Invalidate by Virtual Address to Point of Unification	ICIMVAU
-
-#### How ARM Linux uses cache flush
 ```
+#### How ARM Linux uses cache flush
+```c
 /*
  *	__flush_dcache_area(kaddr, size)
  *
@@ -94,10 +95,9 @@ IVAU	Invalidate by Virtual Address to Point of Unification	ICIMVAU
  *	- size    - size in question
  */
 ```
-https://github.com/torvalds/linux/blob/fa3d493f7a573b4e4e2538486e912093a0161c1b/arch/arm64/mm/cache.S#L110
+Source code in [cache.S](https://github.com/torvalds/linux/blob/fa3d493f7a573b4e4e2538486e912093a0161c1b/arch/arm64/mm/cache.S#L110)
 
-Macro dcache_by_line_op defined in:
-https://elixir.bootlin.com/linux/v4.14/source/arch/arm64/include/asm/assembler.h#L341
+Macro dcache_by_line_op defined in [assembler.h](https://elixir.bootlin.com/linux/v4.14/source/arch/arm64/include/asm/assembler.h#L341)
 
 
 ### Plan of FPGA testing flushx
@@ -108,9 +108,16 @@ Compile and put new program into system and run.
 Consider adding flushx in Operating System.
 
 #### Where to add flushx in Linux
-Trap entry is at:
-https://github.com/westerndigitalcorporation/RISC-V-Linux/blob/13cb16d5e8e11ebca490cad50cc5abbd222839a1/linux/arch/riscv/kernel/entry.S#L147
+Trap entry is in [entry.S](https://github.com/westerndigitalcorporation/RISC-V-Linux/blob/13cb16d5e8e11ebca490cad50cc5abbd222839a1/linux/arch/riscv/kernel/entry.S#L147)
 
-syscall can be made via standard SBI, which handles ecall and arguments:
-https://github.com/riscv/riscv-linux/blob/32b1573d1f118844d859341d095e005ca5ba572e/arch/riscv/include/asm/sbi.h#L30
+syscall can be made via standard SBI, which handles ecall and arguments in [sbi.h](https://github.com/riscv/riscv-linux/blob/32b1573d1f118844d859341d095e005ca5ba572e/arch/riscv/include/asm/sbi.h#L30)
 
+
+### Verilator 4.0 for multithreading
+`numactl -C 0,1,2,3 executable`
+
+### Some weekly tasks
+- [ ] Develop iTLB flush
+- [ ] Test iTLB flush
+- [ ] Dev dTLB flush
+- [ ] Test dTLB flush
