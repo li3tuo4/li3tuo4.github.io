@@ -117,6 +117,8 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
 `numactl -C 0,1,2,3 executable`
 
 ### Some weekly tasks
+:coffee:
+
 - [ ] Develop iTLB flush
 - [ ] Test iTLB flush
 - [ ] Dev dTLB flush
