@@ -172,3 +172,8 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
   [chinese summary](https://github.com/cnrv/home/pull/93/commits/013b536f2b6dff1bc0e91778a27d5c1d93afc3ac)
   - [x] Have a read! :sweat_smile:
   
+  #### Modify TODOs
+  As specified in the cache control instruction discussion in *riscv-isa-dev*. It makes sense to me to create two subtypes of flushx:
+  - One just writes back
+  - One just invalidates entire cache
+  - Consider adding cache area as input of these two
