@@ -121,7 +121,9 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
 
 ### Some weekly tasks
 :coffee:
-
+- [ ] subtypes of cache flush
+  - cache writeback
+  - cache invalidate (discard)
 - [ ] Develop iTLB flush
 - [ ] Test iTLB flush
 - [ ] Dev dTLB flush
