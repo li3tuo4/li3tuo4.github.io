@@ -170,5 +170,5 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
   
   [draft6](https://groups.google.com/a/groups.riscv.org/forum/#!msg/isa-dev/qXbzqaQbDXU/Hs1AO9xDCQAJ)
   [chinese summary](https://github.com/cnrv/home/pull/93/commits/013b536f2b6dff1bc0e91778a27d5c1d93afc3ac)
-  - [ ] Have a read! :sweat_smile:
+  - [x] Have a read! :sweat_smile:
   
