@@ -177,3 +177,6 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
   - One just writes back
   - One just invalidates entire cache
   - Consider adding cache area as input of these two
+  
+  #### Dynamic analysis about resetting in D-Cache
+  Every cycle cleans one set. It tooks 64 cycles.
