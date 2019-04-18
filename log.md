@@ -180,3 +180,6 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
   
   #### Dynamic analysis about resetting in D-Cache
   Every cycle cleans one cache set. It takes 64 cycles for 64 sets.
+  The variable (register) flushCounter is initialized to 196, i.e., `UInt(nSets * (nWay-1))`. This counter is reused later by `M_FLUSH_ALL` (and our `M_FLUSH_X`). The current impl of resetting mechanism discards d-cache but assumes that it is only enabled at the system reset. Therefore, the `flushCounter` is assigned to 0 after resetting is done, which is in range `[0,(nSets*nWays)-1]`.
+  
+  This assumption is very different to our use case, which is in the middle of program execution. We need to use an extra register as the counter, which is assigned to `UInt(nSets * (nWay-1))` after resetting is done.  
