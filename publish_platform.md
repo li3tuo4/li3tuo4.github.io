@@ -3,7 +3,7 @@
 ## Outline
 
 * Introduction
-  * TBD
+  * Goal: provide rich evaluatoin of RISC-V with Rocket Chip on ZCU102.
 
 * Background
 
