@@ -187,3 +187,6 @@ syscall can be made via standard SBI, which handles ecall and arguments in [sbi.
  ### A new plan about writing for the platform
 [Link to the md](https://github.com/li3tuo4/li3tuo4.github.io/blob/master/publish_platform.md#plan-for-publishing-zcu102-rocket-chip-risc-v)
 Consider whether to do it now or later.
+
+### A bug regarding flush logics in rocket core
+The flush logic will accidentally flush one more cache line after the entire flush operation is finished.
