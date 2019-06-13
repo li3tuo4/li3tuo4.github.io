@@ -1,5 +1,5 @@
 ## Research log
-[Stack bottom](https://github.com/li3tuo4/li3tuo4.github.io/blob/master/log.md#some-weekly-tasks)
+[Latest update]()
 
 ### Cache flush in ARM
 #### In ARM trusted firmware
@@ -196,3 +196,10 @@ s1_flush_valid := metaArb.io.in(5).fire() && !s1_flush_valid && !s2_flush_valid_
 metaArb.io.in(5).valid := flushing || (flushxing && !flushxed) || (writebackxing && !writebackxed) //Tuo add writebackxing in input
 ```
 This bug creates huge trouble for M_WRITEBACK. After the entire cache writeback is done, an arbitrary cacheline will be flushed! metadata.coh becomes nothing (0) for that cacheline. Hence, a cache-miss will occur if later a memory reference is on that cacheline, which should have been a hit.
+
+## About visualizing tilelink
+Check [here](https://forums.sifive.com/t/tilelink-visualisation/1825)
+```
+Open the generated graphml file for your design using https://www.yworks.com/products/yed 11.
+Then in the GUI select Layout => Hierarchical, pick some options, and hit ok.
+```
