@@ -190,3 +190,9 @@ Consider whether to do it now or later.
 
 ### A bug regarding flush logics in rocket core
 The flush logic will accidentally flush one more cache line after the entire flush operation is finished.
+The code with the fix `&& !writebackxed` and `&& !flushxed`:
+```  
+s1_flush_valid := metaArb.io.in(5).fire() && !s1_flush_valid && !s2_flush_valid_pre_tag_ecc && release_state === s_ready && !release_ack_wait
+metaArb.io.in(5).valid := flushing || (flushxing && !flushxed) || (writebackxing && !writebackxed) //Tuo add writebackxing in input
+```
+This bug creates huge trouble for M_WRITEBACK. After the entire cache writeback is done, an arbitrary cacheline will be flushed! metadata.coh becomes nothing (0) for that cacheline. Hence, a cache-miss will occur if later a memory reference is on that cacheline, which should have been a hit.
