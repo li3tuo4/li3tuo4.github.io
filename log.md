@@ -1,5 +1,5 @@
 ## Research log
-[Latest update]()
+[Latest update](https://github.com/li3tuo4/li3tuo4.github.io/blob/master/log.md#about-visualizing-tilelink)
 
 ### Cache flush in ARM
 #### In ARM trusted firmware
