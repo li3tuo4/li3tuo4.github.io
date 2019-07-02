@@ -203,3 +203,19 @@ Check [here](https://forums.sifive.com/t/tilelink-visualisation/1825)
 Open the generated graphml file for your design using https://www.yworks.com/products/yed 11.
 Then in the GUI select Layout => Hierarchical, pick some options, and hit ok.
 ```
+## About compiling sel4test
+Using new riscv-gcc tool chain can lead to sel4test failure during execution.
+```
+Starting test 90: Test all tests ran
+Test suite failed. 85/90 tests passed.
+*** FAILURES DETECTED ***
+
+
+seL4 root server abort()ed
+Debug halt syscall from user thread 0xffffffc087fd7a00 "sel4test-driver"
+halting...Power off
+
+```
+
+
+
