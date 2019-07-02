@@ -216,6 +216,12 @@ Debug halt syscall from user thread 0xffffffc087fd7a00 "sel4test-driver"
 halting...Power off
 
 ```
+And, new sel4test does not work on board. It works on qemu.
+The system halts in
+```
+BOOT_CODE static void arch_init_freemem(region_t ui_reg, v_region_t ui_v_reg)
 
+```
+in `kernel/src/arch/riscv/kernel/boot.c`.
 
 
