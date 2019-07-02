@@ -204,7 +204,7 @@ Open the generated graphml file for your design using https://www.yworks.com/pro
 Then in the GUI select Layout => Hierarchical, pick some options, and hit ok.
 ```
 ## About compiling sel4test
-Using new riscv-gcc tool chain can lead to sel4test failure during execution.
+Using new riscv-gcc tool chain can lead to the old sel4test `10.0.0-dev` failure during execution.
 ```
 Starting test 90: Test all tests ran
 Test suite failed. 85/90 tests passed.
@@ -216,7 +216,7 @@ Debug halt syscall from user thread 0xffffffc087fd7a00 "sel4test-driver"
 halting...Power off
 
 ```
-And, new sel4test does not work on board. It works on qemu.
+And, new sel4test `10.1.1-dev` does not work on board. It works on qemu.
 The system halts in
 ```
 BOOT_CODE static void arch_init_freemem(region_t ui_reg, v_region_t ui_v_reg)
