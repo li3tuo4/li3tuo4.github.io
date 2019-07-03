@@ -224,4 +224,7 @@ BOOT_CODE static void arch_init_freemem(region_t ui_reg, v_region_t ui_v_reg)
 ```
 in `kernel/src/arch/riscv/kernel/boot.c`.
 
+Important: the new argument to build sel4test for rocketchip zedboard is
+
+`../init-build.sh -DPLATFORM=spike -DRISCV64=TRUE -DKernelSpikeInstance=rocket-chip-zedboard`
 
