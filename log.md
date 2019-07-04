@@ -228,3 +228,20 @@ Important: the new argument to build sel4test for rocketchip zedboard is
 
 `../init-build.sh -DPLATFORM=spike -DRISCV64=TRUE -DKernelSpikeInstance=rocket-chip-zedboard`
 
+
+Time test of sel4test with flushx inserted:
+
+```
+Starting test 90: Test all tests ran
+Test suite passed. 90 tests passed. 59 tests disabled.
+All is well in the universe
+
+
+seL4 root server abort()ed
+Debug halt syscall from user thread 0xffffffc087fd7a00 "sel4test-driver"
+halting...Power off
+
+real    3m55.795s
+user    2m34.812s
+sys     1m11.008s
+```
