@@ -245,3 +245,18 @@ real    3m55.795s
 user    2m34.812s
 sys     1m11.008s
 ```
+Time test of nominal sel4test:
+```
+Starting test 90: Test all tests ran
+Test suite passed. 90 tests passed. 59 tests disabled.
+All is well in the universe
+
+
+seL4 root server abort()ed
+Debug halt syscall from user thread 0xffffffc087fd7a00 "sel4test-driver"
+halting...Power off
+
+real    2m38.223s
+user    1m43.080s
+sys     0m45.376s
+```
