@@ -229,10 +229,26 @@ repo init -u https://github.com/seL4/sel4test-manifest.git -b refs/tags/10.1.1
 repo sync
 ```
 
-Important: the new argument to build sel4test for rocketchip zedboard is
+The new argument to build sel4test for rocketchip zedboard for `10.1.1` is
 
 `../init-build.sh -DPLATFORM=spike -DRISCV64=TRUE -DKernelSpikeInstance=rocket-chip-zedboard`
 
+In `kernel/tools/hardware_gen.py`, an error can happen during build:
+```
+Traceback (most recent call last):
+  File "/home/lituo/workspace/riscv/newsel4test/kernel/tools/hardware_gen.py", line 1063, in <module>
+    main(args)
+  File "/home/lituo/workspace/riscv/newsel4test/kernel/tools/hardware_gen.py", line 989, in main
+    schema = yaml.load(args.schema, Loader=yaml.FullLoader)
+AttributeError: 'module' object has no attribute 'FullLoader'
+CMake Error at kernel/config.cmake:162 (message):
+  Failed to generate:
+  /home/lituo/workspace/riscv/newsel4test/cbuild/kernel/gen_headers/plat/machine/devices_gen.h
+Call Stack (most recent call first):
+  kernel/CMakeLists.txt:59 (include)
+```
+
+A simple patch to this error is to change `FullLoader` to `SafeLoader` in these two places. 
 
 Time test of sel4test with flushx inserted:
 
