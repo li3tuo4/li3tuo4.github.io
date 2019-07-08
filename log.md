@@ -216,13 +216,18 @@ Debug halt syscall from user thread 0xffffffc087fd7a00 "sel4test-driver"
 halting...Power off
 
 ```
-And, new sel4test `10.1.1-dev` does not work on board. It works on qemu.
+And, new sel4test at master branch `10.1.1-dev` does not work on board. It works on qemu.
 The system halts in
 ```
 BOOT_CODE static void arch_init_freemem(region_t ui_reg, v_region_t ui_v_reg)
-
 ```
 in `kernel/src/arch/riscv/kernel/boot.c`.
+
+So, we need to build sel4test with release version (10.1.1):
+```
+repo init -u https://github.com/seL4/sel4test-manifest.git -b refs/tags/10.1.1
+repo sync
+```
 
 Important: the new argument to build sel4test for rocketchip zedboard is
 
