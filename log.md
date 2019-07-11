@@ -281,3 +281,5 @@ real    2m38.223s
 user    1m43.080s
 sys     0m45.376s
 ```
+## Compile SPEC2006
+For `483.xalancbmk`, use this [solution](https://yulistic.gitlab.io/2017/04/speccpu2006-formattertohtml.cpp-memset-was-not-declared-error/) to fix.
