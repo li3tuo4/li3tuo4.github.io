@@ -285,6 +285,6 @@ sys     0m45.376s
 For `483.xalancbmk`, use this [solution](https://yulistic.gitlab.io/2017/04/speccpu2006-formattertohtml.cpp-memset-was-not-declared-error/) to fix.
 
 ## Compile riscv-linux newer than 4.15
-The reason of using new linux is that starting from 4.18, perf_events is supported.
+The reason of using new linux is that starting from `4.18`, perf_events is supported.
 The error with gcc can be solved by this [solution](https://github.com/sifive/freedom-u-sdk/issues/66).
 One more correction: use `CROSS_COMPILE=riscv64-unknown-linux-gnu-`.
