@@ -288,3 +288,8 @@ For `483.xalancbmk`, use this [solution](https://yulistic.gitlab.io/2017/04/spec
 The reason of using new linux is that starting from `4.18`, perf_events is supported.
 The error with gcc can be solved by this [solution](https://github.com/sifive/freedom-u-sdk/issues/66).
 One more correction: use `CROSS_COMPILE=riscv64-unknown-linux-gnu-`.
+
+### riscv-linux 4.20
+ `cpu = of_find_node_by_path("/cpus");` in arch/riscv/kerne/time.c should be fixed to `cpu = of_find_node_by_path("/cpus/cpu@0")`.
+ 
+ Add `CONFIG_HVC_RISCV_SBI=y` in `conf/linux_defconfig`. 
