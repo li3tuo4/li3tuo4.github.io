@@ -283,3 +283,7 @@ sys     0m45.376s
 ```
 ## Compile SPEC2006
 For `483.xalancbmk`, use this [solution](https://yulistic.gitlab.io/2017/04/speccpu2006-formattertohtml.cpp-memset-was-not-declared-error/) to fix.
+
+## Compile riscv-linux newer than 4.15
+The error with gcc can be solved by this [solution](https://github.com/sifive/freedom-u-sdk/issues/66).
+One more correction: use `CROSS_COMPILE=riscv64-unknown-linux-gnu-`.
