@@ -293,3 +293,54 @@ One more correction: use `CROSS_COMPILE=riscv64-unknown-linux-gnu-`.
  `cpu = of_find_node_by_path("/cpus");` in arch/riscv/kerne/time.c should be fixed to `cpu = of_find_node_by_path("/cpus/cpu@0")`.
  
  Add `CONFIG_HVC_RISCV_SBI=y` in `conf/linux_defconfig`. 
+ 
+ ## Coremark run (flushxRISCV x native program)
+ Run1:
+ 
+ ```
+ # ./coremark.exe 0x0 0x0 0x66 0 7 1 2000
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 15208
+Total time (secs): 15.208000
+Iterations/Sec   : 263.019463
+Iterations       : 4000
+Compiler version : GCC7.2.0
+Compiler flags   : -O2 -fno-common -funroll-loops -finline-functions --param max-inline-
+insns-auto=20 -falign-functions=4 -falign-jumps=4 -falign-loops=4 --param inline-min-spe
+edup=10 -DPERFORMANCE_RUN=1  -lrt
+Memory location  : Please put data memory location here
+                        (e.g. code in flash, data on heap etc)
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x65c5
+Correct operation validated. See README.md for run and reporting rules.
+CoreMark 1.0 : 263.019463 / GCC7.2.0 -O2 -fno-common -funroll-loops -finline-functions -
+-param max-inline-insns-auto=20 -falign-functions=4 -falign-jumps=4 -falign-loops=4 --pa
+ram inline-min-speedup=10 -DPERFORMANCE_RUN=1  -lrt / Heap
+```
+Run2:
+
+```
+# ./coremark.exe 0x3415 0x3415 0x66 0 7 1 2000
+2K validation run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 15248
+Total time (secs): 15.248000
+Iterations/Sec   : 262.329486
+Iterations       : 4000
+Compiler version : GCC7.2.0
+Compiler flags   : -O2 -fno-common -funroll-loops -finline-functions --param max-inline-
+insns-auto=20 -falign-functions=4 -falign-jumps=4 -falign-loops=4 --param inline-min-spe
+edup=10 -DPERFORMANCE_RUN=1  -lrt
+Memory location  : Please put data memory location here
+                        (e.g. code in flash, data on heap etc)
+seedcrc          : 0x18f2
+[0]crclist       : 0xe3c1
+[0]crcmatrix     : 0x0747
+[0]crcstate      : 0x8d84
+[0]crcfinal      : 0x5249
+Correct operation validated. See README.md for run and reporting rules.
+```
