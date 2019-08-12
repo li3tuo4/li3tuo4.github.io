@@ -344,7 +344,8 @@ seedcrc          : 0x18f2
 [0]crcfinal      : 0x5249
 Correct operation validated. See README.md for run and reporting rules.
 ```
-## x86_64 clflush() instruction counts
+## Existing flush instruction 
+### x86_64 clflush() instruction counts
 
 Example from Mastik's `fr_probe()`:
 
@@ -382,4 +383,54 @@ The hot loop is:
   401eca:       48 39 c8                cmp    %rcx,%rax
   401ecd:       75 f1                   jne    401ec0 <fr_probe+0x70>
 ```
-Thereby, without fusion it at least costs 5 dynamic instruction fetch and 5xinst_width (3.71 bytes per instruction, in[UCB/EECS-2016-130](https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-130.pdf)) dynamic instruction bytes, per cache line.
+Thereby, without fusion it at least costs 5 dynamic instruction fetch and 5xinst_width (3.71 bytes per instruction, in [UCB/EECS-2016-130](https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-130.pdf)) dynamic instruction bytes, per cache line.
+
+### ARM in seL4
+```
+void
+cleanInvalidateL1Caches(void)
+{
+    dsb();
+    cleanInvalidate_D_PoC();
+    dsb();
+    invalidate_I_PoU();
+    dsb();
+}
+```
+
+```
+void
+cleanInvalidate_D_PoC(void)
+{
+    int clid = readCLID();
+    int loc = LOC(clid);
+    int l;
+
+    for (l = 0; l < loc; l++) {
+        if (CTYPE(clid, l) > ARMCacheI) {
+            word_t s = readCacheSize(l, 0);
+            int lbits = LINEBITS(s);
+            int assoc = ASSOC(s);
+            int assoc_bits = wordBits - clzl(assoc - 1);
+            int nsets = NSETS(s);
+            int w;
+
+            for (w = 0; w < assoc; w++) {
+                int s;
+
+                for (s = 0; s < nsets; s++) {
+                    cleanInvalidateByWSL((w << (32 - assoc_bits)) |
+                                         (s << lbits) | (l << 1));
+                }
+            }
+        }
+    }
+}
+```
+```
+static inline void invalidate_I_PoU(void)
+{
+    asm volatile("ic iallu");
+    isb();
+}
+```
