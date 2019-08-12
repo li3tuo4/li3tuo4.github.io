@@ -344,3 +344,42 @@ seedcrc          : 0x18f2
 [0]crcfinal      : 0x5249
 Correct operation validated. See README.md for run and reporting rules.
 ```
+## x86_64 clflush() instruction counts
+
+Example from Mastik's `fr_probe()`:
+
+```
+inline int vl_len(vlist_t vl) {
+  assert(vl != NULL);
+  return vl->len;
+  401ea6:       8b 50 04                mov    0x4(%rax),%edx
+  for (int i = 0; i < l; i++) 
+  401ea9:       85 d2                   test   %edx,%edx
+  401eab:       7e 22                   jle    401ecf <fr_probe+0x7f>
+  401ead:       48 8b 40 08             mov    0x8(%rax),%rax
+  401eb1:       83 ea 01                sub    $0x1,%edx
+  401eb4:       48 8d 4c d0 08          lea    0x8(%rax,%rdx,8),%rcx
+  401eb9:       0f 1f 80 00 00 00 00    nopl   0x0(%rax)
+  401ec0:       48 8b 10                mov    (%rax),%rdx
+  401ec3:       0f ae 3a                clflush (%rdx)
+  401ec6:       48 83 c0 08             add    $0x8,%rax
+  401eca:       48 39 c8                cmp    %rcx,%rax
+  401ecd:       75 f1                   jne    401ec0 <fr_probe+0x70>
+    clflush(vl_get(fr->evict, i));
+}
+  401ecf:       5b                      pop    %rbx
+  401ed0:       5d                      pop    %rbp
+  401ed1:       c3                      retq   
+  401ed2:       0f 1f 40 00             nopl   0x0(%rax)
+  401ed6:       66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)
+  401edd:       00 00 00 
+```
+The hot loop is:
+```
+  401ec0:       48 8b 10                mov    (%rax),%rdx
+  401ec3:       0f ae 3a                clflush (%rdx)
+  401ec6:       48 83 c0 08             add    $0x8,%rax
+  401eca:       48 39 c8                cmp    %rcx,%rax
+  401ecd:       75 f1                   jne    401ec0 <fr_probe+0x70>
+```
+Thereby, without fusion it at least costs 5 dynamic instruction fetch and 5xinst_width dynamic instruction bytes, per cache line.
