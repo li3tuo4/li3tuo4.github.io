@@ -382,4 +382,4 @@ The hot loop is:
   401eca:       48 39 c8                cmp    %rcx,%rax
   401ecd:       75 f1                   jne    401ec0 <fr_probe+0x70>
 ```
-Thereby, without fusion it at least costs 5 dynamic instruction fetch and 5xinst_width dynamic instruction bytes, per cache line.
+Thereby, without fusion it at least costs 5 dynamic instruction fetch and 5xinst_width (3.71 bytes per instruction, in[UCB/EECS-2016-130](https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-130.pdf)) dynamic instruction bytes, per cache line.
