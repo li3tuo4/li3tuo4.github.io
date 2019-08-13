@@ -386,6 +386,10 @@ The hot loop is:
 Thereby, without fusion it at least costs 5 dynamic instruction fetch and 5xinst_width (3.71 bytes per instruction, in [UCB/EECS-2016-130](https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-130.pdf)) dynamic instruction bytes, per cache line.
 
 ### ARM in seL4
+
+The main L1 flush function is in `kernel/src/arch/arm/machine/cache.c`.
+The main L1D flush function is in `kernel/src/arch/arm/armv/armv8-a/64/cache.c`.
+
 ```
 void
 cleanInvalidateL1Caches(void)
@@ -509,3 +513,27 @@ ffffff8000011c04:       6b0d015f        cmp     w10, w13
 ffffff8000011c08:       54fffb01        b.ne    ffffff8000011b68 <cleanInvalidate_D_PoC+0x20>  // b.any
 ffffff8000011c0c:       d65f03c0        ret
 ```
+The hot loop in `cleanInvalidate_D_PoC`:
+```
+ffffff8000011bc0:       2a0b00e4        orr     w4, w7, w11
+ffffff8000011bc4:       52800002        mov     w2, #0x0                        // #0
+ffffff8000011bc8:       52800001        mov     w1, #0x0                        // #0
+ffffff8000011bcc:       d503201f        nop
+ffffff8000011bd0:       2a040040        orr     w0, w2, w4
+ffffff8000011bd4:       93407c00        sxtw    x0, w0
+ffffff8000011bd8:       d5087e40        dc      cisw, x0
+ffffff8000011bdc:       11000421        add     w1, w1, #0x1
+ffffff8000011be0:       0b050042        add     w2, w2, w5
+ffffff8000011be4:       6b01007f        cmp     w3, w1
+ffffff8000011be8:       54ffff4c        b.gt    ffffff8000011bd0 <cleanInvalidate_D_PoC+0x88>
+ffffff8000011bec:       110004c6        add     w6, w6, #0x1
+ffffff8000011bf0:       0b0800e7        add     w7, w7, w8
+ffffff8000011bf4:       6b06013f        cmp     w9, w6
+ffffff8000011bf8:       54fffe4c        b.gt    ffffff8000011bc0 <cleanInvalidate_D_PoC+0x78>
+```
+
+**l1dc_hot_loop_insts = sets x ways x 7 + ways x 8**
+
+**l1dc_flush_insts (cleanInvalidate_D_PoC) = l1dc_hot_loop_insts(sets,ways) + front(=30) + back(=5) //assume loc == 1**
+
+**l1c_flush_insts (cleanInvalidateL1Caches) = l1dc_flush_insts + 10**
