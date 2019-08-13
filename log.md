@@ -434,3 +434,78 @@ static inline void invalidate_I_PoU(void)
     isb();
 }
 ```
+
+#### ARM Flush Cost Modeling
+
+The main function assembly:
+```
+ffffff8000011de0 <cleanInvalidateL1Caches>:
+ffffff8000011de0:       a9bf7bfd        stp     x29, x30, [sp, #-16]!
+ffffff8000011de4:       910003fd        mov     x29, sp
+ffffff8000011de8:       d5033f9f        dsb     sy
+ffffff8000011dec:       97ffff57        bl      ffffff8000011b48 <cleanInvalidate_D_PoC>
+ffffff8000011df0:       d5033f9f        dsb     sy
+ffffff8000011df4:       d508751f        ic      iallu
+ffffff8000011df8:       d5033fdf        isb
+ffffff8000011dfc:       d5033f9f        dsb     sy
+ffffff8000011e00:       a8c17bfd        ldp     x29, x30, [sp], #16
+ffffff8000011e04:       d65f03c0        ret
+```
+```
+ffffff8000011b48 <cleanInvalidate_D_PoC>:
+ffffff8000011b48:       d539002d        mrs     x13, clidr_el1
+ffffff8000011b4c:       2a0d03ee        mov     w14, w13
+ffffff8000011b50:       531869ad        ubfx    w13, w13, #24, #3
+ffffff8000011b54:       340005cd        cbz     w13, ffffff8000011c0c <cleanInva
+lidate_D_PoC+0xc4>
+ffffff8000011b58:       0b0d05ad        add     w13, w13, w13, lsl #1
+ffffff8000011b5c:       d280000c        mov     x12, #0x0                       
+// #0
+ffffff8000011b60:       5280000a        mov     w10, #0x0                       
+// #0
+ffffff8000011b64:       5280002f        mov     w15, #0x1                       
+// #1
+ffffff8000011b68:       1aca29c0        asr     w0, w14, w10
+ffffff8000011b6c:       12000800        and     w0, w0, #0x7
+ffffff8000011b70:       7100041f        cmp     w0, #0x1
+ffffff8000011b74:       54000449        b.ls    ffffff8000011bfc <cleanInvalidat
+e_D_PoC+0xb4>  // b.plast
+ffffff8000011b78:       d53a0001        mrs     x1, csselr_el1
+ffffff8000011b7c:       2a0c03eb        mov     w11, w12
+ffffff8000011b80:       d51a000c        msr     csselr_el1, x12
+ffffff8000011b84:       d5390000        mrs     x0, ccsidr_el1
+ffffff8000011b88:       d51a0001        msr     csselr_el1, x1
+ffffff8000011b8c:       53033009        ubfx    w9, w0, #3, #10
+ffffff8000011b90:       12000805        and     w5, w0, #0x7
+ffffff8000011b94:       110010a5        add     w5, w5, #0x4
+ffffff8000011b98:       530d6c00        ubfx    w0, w0, #13, #15
+ffffff8000011b9c:       93407d28        sxtw    x8, w9
+ffffff8000011ba0:       11000403        add     w3, w0, #0x1
+ffffff8000011ba4:       dac01108        clz     x8, x8
+ffffff8000011ba8:       11000529        add     w9, w9, #0x1
+ffffff8000011bac:       1ac521e5        lsl     w5, w15, w5
+ffffff8000011bb0:       52800007        mov     w7, #0x0                        // #0
+ffffff8000011bb4:       1ac821e8        lsl     w8, w15, w8
+ffffff8000011bb8:       52800006        mov     w6, #0x0                        // #0
+ffffff8000011bbc:       d503201f        nop
+ffffff8000011bc0:       2a0b00e4        orr     w4, w7, w11
+ffffff8000011bc4:       52800002        mov     w2, #0x0                        // #0
+ffffff8000011bc8:       52800001        mov     w1, #0x0                        // #0
+ffffff8000011bcc:       d503201f        nop
+ffffff8000011bd0:       2a040040        orr     w0, w2, w4
+ffffff8000011bd4:       93407c00        sxtw    x0, w0
+ffffff8000011bd8:       d5087e40        dc      cisw, x0
+ffffff8000011bdc:       11000421        add     w1, w1, #0x1
+ffffff8000011be0:       0b050042        add     w2, w2, w5
+ffffff8000011be4:       6b01007f        cmp     w3, w1
+ffffff8000011be8:       54ffff4c        b.gt    ffffff8000011bd0 <cleanInvalidate_D_PoC+0x88>
+ffffff8000011bec:       110004c6        add     w6, w6, #0x1
+ffffff8000011bf0:       0b0800e7        add     w7, w7, w8
+ffffff8000011bf4:       6b06013f        cmp     w9, w6
+ffffff8000011bf8:       54fffe4c        b.gt    ffffff8000011bc0 <cleanInvalidate_D_PoC+0x78>
+ffffff8000011bfc:       11000d4a        add     w10, w10, #0x3
+ffffff8000011c00:       9100098c        add     x12, x12, #0x2
+ffffff8000011c04:       6b0d015f        cmp     w10, w13
+ffffff8000011c08:       54fffb01        b.ne    ffffff8000011b68 <cleanInvalidate_D_PoC+0x20>  // b.any
+ffffff8000011c0c:       d65f03c0        ret
+```
