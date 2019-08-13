@@ -534,6 +534,6 @@ ffffff8000011bf8:       54fffe4c        b.gt    ffffff8000011bc0 <cleanInvalidat
 
 **l1dc_hot_loop_insts = sets x ways x 7 + ways x 8**
 
-**l1dc_flush_insts (cleanInvalidate_D_PoC) = l1dc_hot_loop_insts(sets,ways) + front(=30) + back(=5) //assume loc == 1**
+**l1dc_flush_insts (`cleanInvalidate_D_PoC`) = l1dc_hot_loop_insts(sets,ways) + front(=30) + back(=5) //assume loc == 1**
 
-**l1c_flush_insts (cleanInvalidateL1Caches) = l1dc_flush_insts + 10**
+**l1c_flush_insts (`cleanInvalidateL1Caches`) = l1dc_flush_insts + 10**
