@@ -539,3 +539,49 @@ ffffff8000011bf8:       54fffe4c        b.gt    ffffff8000011bc0 <cleanInvalidat
 **l1dc_flush_insts (`cleanInvalidate_D_PoC`) = l1dc_hot_loop_insts(sets,ways) + front(=30) + back(=5)**
 
 **l1c_flush_insts (`cleanInvalidateL1Caches`) = l1dc_flush_insts + 10**
+
+## L1 flush from user mode in ARM
+
+```
+00000000004006d8 <__clear_cache>:
+  4006d8:       14000002        b       4006e0 <__aarch64_sync_cache_range>
+  4006dc:       00000000        .inst   0x00000000 ; undefined
+
+00000000004006e0 <__aarch64_sync_cache_range>:
+  4006e0:       b0000403        adrp    x3, 481000 <__TMC_END__+0x5f0>
+  4006e4:       b94a5862        ldr     w2, [x3, #2648]
+  4006e8:       35000082        cbnz    w2, 4006f8 <__aarch64_sync_cache_range+0x18>
+  4006ec:       d53b0024        mrs     x4, ctr_el0
+  4006f0:       2a0403e2        mov     w2, w4
+  4006f4:       b90a5864        str     w4, [x3, #2648]
+  4006f8:       d3504c44        ubfx    x4, x2, #16, #4
+  4006fc:       52800083        mov     w3, #0x4                        // #4
+  400700:       12000c45        and     w5, w2, #0xf
+  400704:       1ac42064        lsl     w4, w3, w4
+  400708:       51000482        sub     w2, w4, #0x1
+  40070c:       8a220002        bic     x2, x0, x2
+  400710:       1ac52063        lsl     w3, w3, w5
+  400714:       eb01005f        cmp     x2, x1
+  400718:       540000c2        b.cs    400730 <__aarch64_sync_cache_range+0x50>  // b.hs, b.nlast
+  40071c:       93407c84        sxtw    x4, w4
+  400720:       d50b7b22        dc      cvau, x2
+  400724:       8b040042        add     x2, x2, x4
+  400728:       eb02003f        cmp     x1, x2
+  40072c:       54ffffa8        b.hi    400720 <__aarch64_sync_cache_range+0x40>  // b.pmore
+  400730:       d5033b9f        dsb     ish
+  400734:       51000462        sub     w2, w3, #0x1
+  400738:       8a220000        bic     x0, x0, x2
+  40073c:       eb00003f        cmp     x1, x0
+  400740:       540000c9        b.ls    400758 <__aarch64_sync_cache_range+0x78>  // b.plast
+  400744:       93407c62        sxtw    x2, w3
+  400748:       d50b7520        ic      ivau, x0
+  40074c:       8b020000        add     x0, x0, x2
+  400750:       eb00003f        cmp     x1, x0
+  400754:       54ffffa8        b.hi    400748 <__aarch64_sync_cache_range+0x68>  // b.pmore
+  400758:       d5033b9f        dsb     ish
+  40075c:       d5033fdf        isb
+  400760:       d65f03c0        ret
+  400764:       00000000        .inst   0x00000000 ; undefined
+```
+ARMv8's `dc cvau` and `ic ivau` are explained in [doc](https://cs140e.sergio.bz/docs/ARMv8-A-Programmer-Guide.pdf).
+These two instructions flush the content to PoU, which is the unified L2 cache.
