@@ -585,3 +585,10 @@ ffffff8000011bf8:       54fffe4c        b.gt    ffffff8000011bc0 <cleanInvalidat
 ```
 ARMv8's `dc cvau` and `ic ivau` are explained in [doc](https://cs140e.sergio.bz/docs/ARMv8-A-Programmer-Guide.pdf).
 These two instructions flush the content to PoU, which is the unified L2 cache.
+
+## Confirmed! No L2 in rocket-core generator.
+
+See [link](https://github.com/chipsalliance/rocket-chip/issues/653):
+```
+Unfortunately, we never had a production-ready L2. Also, the previous L2 spoke a now obsolete version of TileLink. At present there is no L2 in the repository. :-(
+```
