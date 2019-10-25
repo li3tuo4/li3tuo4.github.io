@@ -5,3 +5,7 @@ About Chisel vs. Verilog (Traditional HDL), this [stackoverflow link](https://st
 ```
 From this perspective, the question is closer to "What utility does C++ and LLVM provide over manually written assembly language?"
 ```
+
+```
+Concretely, this means that a user is very close to being able to "just import a RISC-V microprocessor" in the same way that they "just import a graph library".
+```
