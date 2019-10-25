@@ -9,3 +9,5 @@ From this perspective, the question is closer to "What utility does C++ and LLVM
 ```
 Concretely, this means that a user is very close to being able to "just import a RISC-V microprocessor" in the same way that they "just import a graph library".
 ```
+
+Also, a great [story](http://www.paulgraham.com/avg.html) is shared by Paul Graham about their use of Lisp in their successful start-up adventure
