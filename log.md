@@ -1,5 +1,7 @@
 ## Research log
-[Latest update](https://github.com/li3tuo4/li3tuo4.github.io/blob/master/log.md#about-visualizing-tilelink)
+
+
+
 
 ### Cache flush in ARM
 #### In ARM trusted firmware
@@ -594,8 +596,13 @@ Unfortunately, we never had a production-ready L2. Also, the previous L2 spoke a
 ```
 
 ## Petalinux kernel source
-(Xilinx forum)[https://forums.xilinx.com/t5/Embedded-Linux/Petalinux-where-can-I-find-the-kernel-sources-in-a-Petalinux/td-p/811189] shows where kernel source is located in petainux project.
-But, you must set the flag ```RM_WORK_EXCLUDE += "linux-xlnx"``` in config file located in ```<plnx-proj-root>/project-spec/meta-user/conf/petalinuxbsp.conf```. This is useful for compiling kernel modules, which can use kernel functions, such as cache flush.
+[Xilinx forum](https://forums.xilinx.com/t5/Embedded-Linux/Petalinux-where-can-I-find-the-kernel-sources-in-a-Petalinux/td-p/811189) shows the kernel source is located in `<plnx-proj-root>/build/tmp/work-shared/plnx_aarch64/kernel-source`.
+But, you must set the flag `RM_WORK_EXCLUDE += "linux-xlnx"` in config file located in `<plnx-proj-root>/project-spec/meta-user/conf/petalinuxbsp.conf`. This is useful for compiling kernel modules, which can use kernel functions, such as cache flush.
 
 ## Kernel module programming for measuring cycles
-Tutorial is given by (Intel)[https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf], which relies on kernel module programming.
+Tutorial is given by [Intel](https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf), which relies on kernel module programming.
+
+## Add PERF and taskset to ARM Linux
+Adding PERF is explained in the [post](https://forums.xilinx.com/t5/Embedded-Linux/added-perf-component-not-found-in-rootfs-from-qemu-boot/td-p/851596).
+
+Taskset.
