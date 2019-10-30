@@ -605,4 +605,6 @@ Tutorial is given by [Intel](https://www.intel.com/content/dam/www/public/us/en/
 ## Add PERF and taskset to ARM Linux
 Adding PERF is explained in the [post](https://forums.xilinx.com/t5/Embedded-Linux/added-perf-component-not-found-in-rootfs-from-qemu-boot/td-p/851596).
 
-Taskset.
+Taskset can be added as this [solution](https://forums.xilinx.com/t5/Embedded-Linux/Taskset-to-Petalinux-2018-3/td-p/1024400).
+
+Add `IMAGE_INSTALL_append = " util-linux"` to `/project_folder/project-spec/meta-user/recipes-core/images/petalinux-image-full.bbappend`. And, run `petalinux-config -c rootfs` and enable user package.
