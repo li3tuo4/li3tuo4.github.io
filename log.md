@@ -608,3 +608,5 @@ Adding PERF is explained in the [post](https://forums.xilinx.com/t5/Embedded-Lin
 Taskset can be added as this [solution](https://forums.xilinx.com/t5/Embedded-Linux/Taskset-to-Petalinux-2018-3/td-p/1024400).
 
 Add `IMAGE_INSTALL_append = " util-linux"` to `/project_folder/project-spec/meta-user/recipes-core/images/petalinux-image-full.bbappend`. And, run `petalinux-config -c rootfs` and enable user package.
+
+Actually, in petalinux, you can directly config kernel to have util-linux.
