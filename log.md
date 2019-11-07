@@ -1,4 +1,4 @@
-## Research log
+# Research log
 
 
 
@@ -609,4 +609,56 @@ Taskset can be added as this [solution](https://forums.xilinx.com/t5/Embedded-Li
 
 Add `IMAGE_INSTALL_append = " util-linux"` to `/project_folder/project-spec/meta-user/recipes-core/images/petalinux-image-full.bbappend`. And, run `petalinux-config -c rootfs` and enable user package.
 
-Actually, in petalinux, you can directly config kernel to have util-linux.
+Actually, in petalinux, you can directly config kernel to have util-linux. This is confirmed (but `perf annotate` does not work).
+
+## Yocto kernel source customize (petalinux)
+See the Xilinx forum [thread](https://forums.xilinx.com/t5/Embedded-Linux/how-to-add-or-modify-petalinux-2016-4-yocto-kernel-source-or/td-p/742861).
+Abstract:
+```
+after build the kernel you will find the source code in the 
+
+<plnx-proj-root>/build/tmp/work-shared/plnx_arm/kernel-source
+
+
+1. modify the code source in the <plnx-proj-root>/build/tmp/work-shared/plnx_arm/kernel-source
+
+for example: drivers/w1/masters/w1-gpio.c
+
+2. in the  <plnx-proj-root>/build/tmp/work-shared/plnx_arm/kernel-source do like this
+
+git add file1(like:drivers/w1/masters/w1-gpio.c) file2 ...
+
+ 
+
+3. give a pacth tile
+
+git commit -s -m 'your commit title'
+
+ 
+
+4.create the pacth
+
+git format-patch -1
+
+    #and then you will see the .pacth in you current directory.
+
+ 
+
+5. copy this .pacth to the <plnx-proj-root>/project-spec/meta-user/recipes-kernel/linux/linux-xlnx/
+
+and add the linux-xlnx_%.bbappend file in the <plnx-proj-root>/project-spec/meta-user/recipes-kernel/linux/ 
+
+like:
+SRC_URI_append = " file://xxxx.patch"
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+
+and then 
+
+and then petaliunx-build 
+
+and the new <plnx-proj-root>/build/tmp/work-shared/plnx_arm/kernel-source code will add your patch.
+
+and i think this will be helpful with you.
+```
