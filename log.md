@@ -677,3 +677,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 Note: Any patches in the project will not be applied to an external source tree for the Linux kernel or u-boot. The user should apply patches to the external source tree.
 ```
+## Add new syscall to ARM Linux kernel
+[Source](https://www.linuxbnb.net/home/adding-a-system-call-to-linux-arm-architecture/)
+
