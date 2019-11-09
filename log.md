@@ -662,3 +662,18 @@ and the new <plnx-proj-root>/build/tmp/work-shared/plnx_arm/kernel-source code w
 
 and i think this will be helpful with you.
 ```
+##  Patching the Linux Kernel of a PetaLinux Project
+Source:[xilinx wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842475/PetaLinux+Yocto+Tips#PetaLinuxYoctoTips-PatchingtheLinuxKernelofaPetaLinuxProject)
+
+```
+1. Copy the patch to project file <plnx-proj-root>/project-spec/meta-user/recipes-kernel/linux/linux-xlnx directory.
+
+2. Modify project file <plnx-proj-root>/project-spec/meta-user/recipes-kernel/linux/linux-xlnx_%.bbappend to use the patch file by adding the patch file name to the SRC_URI_append variable. If the variable does not exist in the file then add a new line with
+SRC_URI_append = " file://0001-linux-driver-fix.patch"
+  
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+3. Make sure the priority for the meta-user layer is 7 in the project file <plnx-proj-root>/project-spec/meta-user/conf/layer.conf .
+
+Note: Any patches in the project will not be applied to an external source tree for the Linux kernel or u-boot. The user should apply patches to the external source tree.
+```
