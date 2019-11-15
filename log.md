@@ -680,3 +680,8 @@ Note: Any patches in the project will not be applied to an external source tree 
 ## Add new syscall to ARM Linux kernel
 [Source](https://www.linuxbnb.net/home/adding-a-system-call-to-linux-arm-architecture/)
 
+## Collect memory trace from spike
+
+Check this modification in mmu [source](https://discl.cs.ttu.edu/gitlab/gc64/gc64-isa-sim/blob/master/riscv/mmu.cc).
+Key words `mtrace_enable`
+
