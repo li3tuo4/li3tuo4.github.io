@@ -685,7 +685,9 @@ Note: Any patches in the project will not be applied to an external source tree 
 Check this modification in mmu [source](https://discl.cs.ttu.edu/gitlab/gc64/gc64-isa-sim/blob/master/riscv/mmu.cc).
 Key words `mtrace_enable`
 
-## lmbench results
+## lmbench results\
+
+With flushx in trap entry, dual core
 ```
 "size=0k ovr=268.37
 2 189.38
@@ -747,4 +749,66 @@ Key words `mtrace_enable`
 64 187.57
 96 187.94
 
+```
+Original kernel, dual core
+```
+"size=0k ovr=48.40
+2 46.00
+4 47.55
+8 71.04
+16 94.52
+24 106.48
+32 107.87
+64 117.76
+96 116.74
+
+"size=4k ovr=68.06
+2 50.94
+4 75.01
+8 121.09
+16 147.41
+24 151.52
+32 161.69
+64 160.62
+96 158.15
+
+"size=8k ovr=85.81
+2 56.72
+4 92.60
+8 171.44
+16 192.60
+24 196.19
+32 199.01
+64 194.99
+96 199.57
+
+"size=16k ovr=125.47
+2 78.82
+4 199.48
+8 255.78
+16 267.22
+24 275.62
+32 269.53
+64 264.42
+96 265.62
+
+"size=32k ovr=273.24
+2 132.26
+4 302.43
+8 323.64
+16 328.82
+24 337.76
+32 328.26
+64 325.61
+96 328.07
+
+"size=64k ovr=782.71
+2 136.45
+4 219.66
+8 231.16
+16 228.47
+24 223.66
+32 221.29
+64 220.40
+96 221.54
 ```
