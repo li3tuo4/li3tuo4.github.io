@@ -86,7 +86,7 @@ p, li {
   }
 */
 h3{
-	font-size:18px;
+	font-size:20px;
 	line-height:27px
 }
 
@@ -99,8 +99,11 @@ h3{
 body{
     background-color: #3D9970;
     height: 100%;
-    font-size:20px;
-    font-family: Cambria,Georgia,serif; 
+    font-size:18px;
+    /*font-family: Cambria,Georgia,serif;*/ 
+    /*font-family: Georgia,Palatino,Times,Roman;*/
+    font-family: "Times New Roman,Times,Serif;"
+
 }
 
 ul {

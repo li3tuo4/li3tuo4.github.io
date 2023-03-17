@@ -1,0 +1,16 @@
+@inproceedings{10.1145/3489517.3530491,
+author = {Li, Tuo and Parameswaran, Sri},
+title = {FaSe: Fast Selective Flushing to Mitigate Contention-Based Cache Timing Attacks},
+year = {2022},
+isbn = {9781450391429},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3489517.3530491},
+doi = {10.1145/3489517.3530491},
+abstract = {Caches are widely used to improve performance in modern processors. By carefully evicting cache lines and identifying cache hit/miss time, contention-based cache timing channel attacks can be orchestrated to leak information from the victim process. Existing hardware countermeasures explored cache partitioning and randomization, are either costly, not applicable for the L1 data cache, or are vulnerable to sophisticated attacks. Countermeasures using cache flush exist but are slow since all cache lines have to be evacuated during a cache flush. In this paper, we propose for the first time a hardware/software flush-based countermeasure, called fast selective flushing (FaSe). By utilizing an ISA extension and cache modification, FaSe selectively flushes cache lines and provides a mitigation method with a similar effect to methods using naive flush. FaSe is implemented on RISC-V Rocket Chip and evaluated on Xilinx FPGA running user programs and the Linux OS. Our experiments show that FaSe reduces time overhead by 36% for user programs and 42% for the OS compared to the methods with naive flushing, with less than 1% hardware overhead. Our security test shows FaSe can mitigate target cache timing attacks.},
+booktitle = {Proceedings of the 59th ACM/IEEE Design Automation Conference},
+pages = {541–546},
+numpages = {6},
+location = {San Francisco, California},
+series = {DAC '22}
+}
