@@ -43,10 +43,11 @@ I am an Associate Professor in the State Key Laboratory of Processors
 at the <a href="http://english.ict.cas.cn/">
 	Institute of Computing Technology (ICT), CAS</a>.
 I received a PhD in Computer Science and Engineering 
-from the <a href="">University of New South Wales (UNSW)</a> in 2014, 
+from the <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering">University of New South Wales (UNSW)</a> in 2014, 
 under the supervision of 
 <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/sri-parameswaran.html">
 	Prof. Sri Parameswaran</a>. 
+<!--
 I am very grateful to have the opportunity to work 
 with <a href="https://ces.itec.kit.edu/index.php">
 	CES at KIT
@@ -56,11 +57,12 @@ led by
 	Prof. J&ouml;rg Henkel
 </a>
 during my PhD study.
+-->
 Before joining ICT CAS, I was a Research Associate at UNSW, 
-where I worked as the Tech Lead/Architect on 
+where I worked as the Tech Lead and Secondary Investigator on 
 two trustworthy computer architecture projects, with DSTG Australia.
-I review for conferences and journals, 
-such as CCS, DAC, ICCAD, DATE, IEEE TC, IEEE TDSC, IEEE TCAD, IEEE TVLSI, etc.
+<br>
+<br>
 My publication records can be found at 
 <a href="https://dblp.org/pers/hd/l/Li_0001:Tuo">DBLP</a> and 
 <a href="https://scholar.google.com/citations?user=x6tGFe8AAAAJ&hl=en">
@@ -70,7 +72,7 @@ My open-source activites (mostly about RISC-V) can be found at
 <br />
 <br />
 <strong>We are hiring!</strong> 
-We are looking for a junior or early-stage researcher (CHN national) to join our team.
+We are looking for postdoc, junior or early-stage researcher to join our team.
 If you are interested in processor security research and want to work with us,
 please contact. 
 We also have internship and exchange positions open for postgraduate students. 
@@ -79,11 +81,68 @@ We also have internship and exchange positions open for postgraduate students.
 <h3>Research</h3>
 <p>
 My main research areas are computer architecture, computer security, 
-and fault tolerance.
-I am interested in innovating processor architecture for trustworthy computing.
-My recent works are regarding 
-security-enhanced RISC-V processor architectures 
-against timing side channels and memory safety vulnerabilities. 
+and fault tolerance. My current research focus is innovating and building RISC-V platform for trustworthy and resilient computing.  
+<br>
+<br>
+My previous research works are summarized as follows.
+<br>
+<ul>
+ <li>
+<strong>RISC-V ISA for memory safety:</strong> 
+Memory safety is a notorious issue for C/C++ programming language, which lack the automatic memory management mechanisms. 
+In recent years, statistics (see <a href="https://msrc.microsoft.com/blog/2019/07/we-need-a-safer-systems-programming-language/">Microsoft's</a>) from industry have shown that memory safety issues are key factors that threaten the system security. 
+Based on the seminal work of <a href="https://llvm.org/pubs/2009-06-PLDI-SoftBound.html">SoftBound</a>
+and <a href="https://intel-mpx.github.io/index.html">lessons learnt from Intel MPX extension</a>,
+we created RISC-V-based architectural solution, documented in <a href="https://li3tuo4.github.io/pub/dow-dac.pdf">[DAC2021]</a> 
+and <a href="https://li3tuo4.github.io/pub/dow-dac22.pdf">[DAC2022a]</a> 
+for adding pointer-based memory safety architectural support into RISC-V ISA, 
+which uses disjoint metadata structure (non-fat-pointer). 
+The extended instruction set supports both spatial (out-of-bound errors) and 
+temporal (use-after-free errors) memory safety corruptions, 
+with moderate hardware overhead, while making significant improvement on the memory safety protection cost, 
+in comparison to software-based approaches such as 
+<a href="https://llvm.org/pubs/2009-06-PLDI-SoftBound.html">SoftBound</a> 
+and <a href="https://github.com/google/sanitizers/wiki/AddressSanitizer">AddressSanitizer</a>. 
+This genre of approach, in comparison to Cambridge University's 
+<a href=""https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/>CHERI research</a>, 
+retrofits existing C/C++ codebase without rewriting the target software codebase 
+and does not incur drastic hardware modifications, such as on-chip bus extension.
+ </li> 
+ <br>
+ <li>
+<strong>Architectural support for microarchitectural timing channel mitigation:</strong>
+microarchitectural timing attacks, such as 
+<a href="https://meltdownattack.com/">Meltdown and Spectre</a>, 
+have been identified as one of the major computer architecture challenges
+(see <a href="https://cacm.acm.org/research/a-new-golden-age-for-computer-architecture/">Hennessy and Patterson's Turing Lecture</a>). 
+Our reseach (see <a href="">[DAC2022b]</a> and <a href="">[ArXiv2020]</a>)
+created new ISA extension with micro-architectural enhancement, 
+demonstrated on RISC-V rocket chip, which enables system to enforce strict timing channel isolation in between security domains. 
+This genre of work supports "time protection" (see <a href="https://trustworthy.systems/publications/abstracts/Ge_YCH_19.abstract">seL4's definition</a> ) at operating system layer. 
+Similar ISA extension (<span style="font-family:'Courier New'">fence.t</span>) has been adopted in <a href="https://github.com/riscv-non-isa/riscv-security-model">the RISC-V security model specification</a>. 
+ </li>
+ <br>
+ <li>
+ <strong>Dependable embedded processor:</strong>
+Soft errors (early observed in space <a href="https://ieeexplore.ieee.org/document/4328188">in electronic equipment</a>, 
+and, at ground level, recored in <a href="https://ieeexplore.ieee.org/abstract/document/5658018">the Cray-1 computers at Los Alamos</a>) are essentially transient failures that do not permanently damage the processor and do not recur.
+Historically, soft errors have been primarily concerned with the design of high availability systems 
+or systems that are deployed in environments that are hostile to electronics, such as outer space. 
+As devices scale, the soft error rate for each individual device due to radiation is projected to 
+remain approximately constant or expected to decrease. However, the exponential increase in the
+integration of the chip leads to correspondingly dramatic decreases in reliability 
+(see <a href="https://ieeexplore.ieee.org/document/5784522">research by Oracle</a>). 
+As a result, it was a consensus between industry and academia that system architecture 
+must be reviewed for such a challenge (see <a href="https://vlsicad.ucsd.edu/Publications/Conferences/302/c302.pdf">the 2011 report from the ITRS</a> and <a href="https://pages.cs.wisc.edu/~shubu/papers/serproblem-hpca2005.pdf">the perspective given by Intel and University of Michigan</a>). 
+Our goal is to find efficient architectural solutions for embedded processors (for instance Leon2 processor with SPARC ISA)
+to be soft-error-resilient, given that soft errors are inevitable. 
+Our research (see <a href="https://li3tuo4.github.io/pub/li-tc.pdf">[IEEE-TC2017]</a>,
+<a href="https://li3tuo4.github.io/pub/date16.pdf">[DATE2016]</a>) 
+is a collaboration with <a href="https://ces.itec.kit.edu/">CES KIT</a>
+under DFG Priority Program <a href="https://spp1500.itec.kit.edu/">SPP-1500</a>.
+ </li>
+</ul>
+
 </p>
 
 <h3>Selected Publications</h3>
@@ -134,43 +193,9 @@ against timing side channels and memory safety vulnerabilities.
 
 <h3>Services</h3>
 <ul>
-<li> ASP-DAC 2024 TPC member and session chair 
+<li> ASP-DAC 2024 TPC member and session chair. 
+<li> Conference and journal reviewer: CCS, DAC, ICCAD, DATE, IEEE TC, IEEE TDSC, IEEE TCAD, IEEE TVLSI, etc.
 </ul>
-
-
-<h3>Advised Students</h3>
-<ul type="square">
-<li>Daniel Rosengarten, 
-	<em>Rollback Features for RISC-V Processor</em>,
-	Undergraduate Thesis, UNSW, 2021</li>
-
-<li>Wei Leong Soon, 
-	<em>Code and Control Integrity for RISC-V Processor</em>, 
-	Undergraduate Thesis, UNSW, 2021</li>
-
-<li>Andrew Ross, 
-	<em>Checkpointing on RISC-V Processor</em>, 
-	Undergraduate Thesis, UNSW, 2019</li>
-
-<li>Yikai Wang, 
-	<em>Memory Isolation in Multi-Core RISC-V System-on-Chip</em>, 
-	Summer Research Project, UNSW, 2018</li>
-
-<li>Jing Gong, 
-	<em>Hardware Memory Address Remapping for RISC-V Processor</em>, 
-	Summer Research Project, UNSW, 2018</li>
-
-<li>William Miles, 
-	<em>Architectural Support for Spatial Memory Error Checking 
-		in RISC-V Processor</em>, 
-	Summer Research Project, UNSW, 2018</li>
-
-<li>Aaron Lai, 
-	<em>A Study of Instruction Set Customization in 
-		Different RISC-V Processor Variants and Tools</em>, 
-	Taste of Research, UNSW, 2017</li>
-</ul>
-
 
 <!--
 <h2>More about me</h2>
@@ -187,9 +212,12 @@ I was a member of the winner team in the 11th Anhui Provincial Sports Games (uni
 <li><a href="https://yanpritzker.com/learn-to-speak-vim-verbs-nouns-and-modifiers-d7bfed1f6b2d">Learn to speak vim -- verbs, nouns, and modifiers!</a></li>
 </ul>
 
-<br>
-<br>
 
+<p>Last updated on: 
+Mon Sep  9 2024
+<br>
+<br>
+</p>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <!-- use the new tag now -->
