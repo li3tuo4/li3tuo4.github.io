@@ -77,3 +77,51 @@
       two trustworthy computer architecture projects with DSTG Australia.
     </p>
   </section>
+
+  <!-- Research -->
+  <section id="research">
+    <h2>Research</h2>
+
+    <div class="research-item">
+      <h3>RISC-V ISA for Memory Safety</h3>
+      <p>
+        Based on the seminal work of <a href="https://llvm.org/pubs/2009-06-PLDI-SoftBound.html" rel="noopener noreferrer">SoftBound</a>
+        and <a href="https://intel-mpx.github.io/index.html" rel="noopener noreferrer">lessons learnt from Intel MPX</a>,
+        we created a RISC-V architectural solution
+        (see <a href="https://li3tuo4.github.io/pub/dow-dac.pdf" rel="noopener noreferrer">DAC2021</a> and
+        <a href="https://li3tuo4.github.io/pub/dow-dac22.pdf" rel="noopener noreferrer">DAC2022</a>)
+        for pointer-based memory safety using disjoint metadata (non-fat-pointer).
+        The ISA extension covers both spatial (out-of-bounds) and temporal (use-after-free) errors
+        with moderate hardware overhead, without the invasive bus changes required by
+        <a href="https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/" rel="noopener noreferrer">CHERI</a>.
+      </p>
+    </div>
+
+    <div class="research-item">
+      <h3>Microarchitectural Timing Channel Mitigation</h3>
+      <p>
+        Meltdown and Spectre-class attacks are among the major computer architecture challenges
+        (see <a href="https://cacm.acm.org/research/a-new-golden-age-for-computer-architecture/" rel="noopener noreferrer">Hennessy and Patterson's Turing Lecture</a>).
+        Our work (see <a href="https://li3tuo4.github.io/pub/li-dac22.pdf" rel="noopener noreferrer">DAC2022</a> and
+        <a href="https://li3tuo4.github.io/pub/li-arxiv.pdf" rel="noopener noreferrer">ArXiv2020</a>)
+        introduces an ISA extension with microarchitectural enhancements on RISC-V rocket chip
+        for strict timing channel isolation between security domains.
+        The <code>fence.t</code> instruction has been adopted in the
+        <a href="https://github.com/riscv-non-isa/riscv-security-model" rel="noopener noreferrer">RISC-V security model specification</a>.
+      </p>
+    </div>
+
+    <div class="research-item">
+      <h3>Dependable Embedded Processors</h3>
+      <p>
+        Soft errors are transient failures that do not permanently damage hardware but threaten reliability
+        as chip integration density increases. Our goal is efficient architectural solutions
+        for embedded processors (e.g. Leon2/SPARC) to be soft-error-resilient.
+        See <a href="https://li3tuo4.github.io/pub/li-tc.pdf" rel="noopener noreferrer">IEEE TC 2017</a> and
+        <a href="https://li3tuo4.github.io/pub/date16.pdf" rel="noopener noreferrer">DATE 2016</a>,
+        in collaboration with <a href="https://ces.itec.kit.edu/" rel="noopener noreferrer">CES KIT</a>
+        under DFG Priority Program <a href="https://spp1500.itec.kit.edu/" rel="noopener noreferrer">SPP-1500</a>.
+      </p>
+    </div>
+
+  </section>
