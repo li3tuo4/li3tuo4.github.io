@@ -36,6 +36,7 @@
         <span class="tag">Computer Architecture</span>
         <span class="tag">Security</span>
         <span class="tag">Fault Tolerance</span>
+        <span class="tag">Trusted Computing</span>
       </div>
       <div class="contact-row">
         <img src="email.png" alt="email" height="20">
@@ -52,10 +53,6 @@
     <div class="news-callout">
       <strong>We are hiring!</strong> Looking for postdoc, junior or early-stage researchers,
       and postgraduate interns interested in processor security. Please get in touch.
-    </div>
-    <div class="news-item">
-      <div class="news-date">2022</div>
-      Two papers accepted at DAC 2022 — FaSe (cache timing channel mitigation) and HWST128 (memory safety accelerator).
     </div>
   </section>
 
@@ -76,6 +73,37 @@
       where I worked as the Tech Lead and Secondary Investigator on
       two trustworthy computer architecture projects with DSTG Australia.
     </p>
+    <p class="tag-cloud-label">Keywords from publications:</p>
+    <div class="tag-cloud">
+      <span class="tc tc-1">FPGA</span>
+      <span class="tc tc-3">Memory Safety</span>
+      <span class="tc tc-1">Genomics</span>
+      <span class="tc tc-5">Soft-Error Resilience</span>
+      <span class="tc tc-2">Timing Isolation</span>
+      <span class="tc tc-1">ORAM</span>
+      <span class="tc tc-4">Checkpoint Recovery</span>
+      <span class="tc tc-2">Cache Timing Attacks</span>
+      <span class="tc tc-3">RISC-V</span>
+      <span class="tc tc-1">Approximate Computing</span>
+      <span class="tc tc-3">Side-Channel Security</span>
+      <span class="tc tc-1">Performance Monitoring</span>
+      <span class="tc tc-4">Embedded Processors</span>
+      <span class="tc tc-2">Fault Tolerance</span>
+      <span class="tc tc-1">Radiation Effects</span>
+      <span class="tc tc-3">Multicore Systems</span>
+      <span class="tc tc-2">Hardware Trojan</span>
+      <span class="tc tc-1">Computer Architecture</span>
+      <span class="tc tc-2">Microarchitecture</span>
+      <span class="tc tc-1">ISA Extension</span>
+      <span class="tc tc-2">Transient Execution</span>
+      <span class="tc tc-1">Hardware Security</span>
+      <span class="tc tc-1">Safety-Critical</span>
+      <span class="tc tc-2">Error Correction</span>
+      <span class="tc tc-1">Vulnerability</span>
+      <span class="tc tc-1">TMR</span>
+      <span class="tc tc-1">Secure Computing</span>
+      <span class="tc tc-1">Automotive</span>
+    </div>
   </section>
 
   <!-- Research -->
@@ -84,6 +112,30 @@
 
     <div class="research-item">
       <h3>RISC-V ISA for Memory Safety</h3>
+      <div class="research-fig">
+        <svg viewBox="0 0 220 100" width="220" height="100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="67" y="11" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">buffer[4]</text>
+          <rect x="4" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="18" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[0]</text>
+          <rect x="35" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="49" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[1]</text>
+          <rect x="66" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="80" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[2]</text>
+          <rect x="97" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="111" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[3]</text>
+          <line x1="130" y1="9" x2="130" y2="43" style="stroke:var(--muted);stroke-width:1.5" stroke-dasharray="3,2"/>
+          <rect x="134" y="15" width="52" height="24" rx="2" style="fill:var(--danger-bg);stroke:var(--danger);stroke-width:1.5"/>
+          <text x="160" y="26" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--danger)">ret_addr</text>
+          <text x="160" y="36" text-anchor="middle" font-family="sans-serif" font-size="7" style="fill:var(--danger)">overwritten!</text>
+          <rect x="190" y="15" width="26" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--border);stroke-width:1"/>
+          <text x="203" y="31" text-anchor="middle" font-family="sans-serif" font-size="10" style="fill:var(--muted)">…</text>
+          <text x="4" y="57" font-family="monospace" font-size="9" style="fill:var(--body)">ptr</text>
+          <path d="M20 53 H152 M146 50 L152 53 L146 56" style="stroke:var(--danger);fill:none;stroke-width:1.5"/>
+          <text x="86" y="49" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--danger)">out-of-bounds write</text>
+          <text x="110" y="74" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--body)">Spatial memory safety violation</text>
+          <text x="110" y="85" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">pointer exceeds allocated object bounds</text>
+        </svg>
+      </div>
       <p>
         Based on the seminal work of <a href="https://llvm.org/pubs/2009-06-PLDI-SoftBound.html" rel="noopener noreferrer">SoftBound</a>
         and <a href="https://intel-mpx.github.io/index.html" rel="noopener noreferrer">lessons learnt from Intel MPX</a>,
@@ -99,6 +151,25 @@
 
     <div class="research-item">
       <h3>Microarchitectural Timing Channel Mitigation</h3>
+      <div class="research-fig">
+        <svg viewBox="0 0 220 112" width="220" height="112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="6" width="86" height="32" rx="3" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1.5"/>
+          <text x="47" y="20" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">Victim Process</text>
+          <text x="47" y="32" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">access secret</text>
+          <rect x="130" y="6" width="86" height="32" rx="3" style="fill:var(--danger-bg);stroke:var(--danger);stroke-width:1.5"/>
+          <text x="173" y="20" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--danger)">Spy Process</text>
+          <text x="173" y="32" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--danger)">&#x23F1; measure time</text>
+          <rect x="4" y="60" width="212" height="22" rx="3" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="110" y="74" text-anchor="middle" font-family="sans-serif" font-size="8.5" style="fill:var(--body)">Shared Last-Level Cache</text>
+          <line x1="47" y1="38" x2="47" y2="60" style="stroke:var(--blue);stroke-width:1.5"/>
+          <path d="M44 57 L47 60 L50 57" style="stroke:var(--blue);fill:none;stroke-width:1.5"/>
+          <text x="56" y="52" font-family="sans-serif" font-size="7" style="fill:var(--blue)">load</text>
+          <line x1="173" y1="60" x2="173" y2="38" style="stroke:var(--danger);stroke-width:1.5" stroke-dasharray="3,2"/>
+          <path d="M170 41 L173 38 L176 41" style="stroke:var(--danger);fill:none;stroke-width:1.5"/>
+          <text x="155" y="52" font-family="sans-serif" font-size="7" style="fill:var(--danger)">infer!</text>
+          <text x="110" y="98" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--body)">Timing side channel via shared cache</text>
+        </svg>
+      </div>
       <p>
         Meltdown and Spectre-class attacks are among the major computer architecture challenges
         (see <a href="https://cacm.acm.org/research/a-new-golden-age-for-computer-architecture/" rel="noopener noreferrer">Hennessy and Patterson's Turing Lecture</a>).
@@ -106,13 +177,36 @@
         <a href="https://li3tuo4.github.io/pub/li-arxiv.pdf" rel="noopener noreferrer">ArXiv2020</a>)
         introduces an ISA extension with microarchitectural enhancements on RISC-V rocket chip
         for strict timing channel isolation between security domains.
-        The <code>fence.t</code> instruction has been adopted in the
-        <a href="https://github.com/riscv-non-isa/riscv-security-model" rel="noopener noreferrer">RISC-V security model specification</a>.
       </p>
     </div>
 
     <div class="research-item">
       <h3>Dependable Embedded Processors</h3>
+      <div class="research-fig">
+        <svg viewBox="0 0 220 106" width="220" height="106" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="74" y="11" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--danger)">&#x2604; particle hit</text>
+          <path d="M74 13 V20 M71 17 L74 20 L77 17" style="stroke:var(--danger);fill:none;stroke-width:1.5"/>
+          <rect x="15" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="26" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">0</text>
+          <rect x="39" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="50" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
+          <rect x="63" y="22" width="22" height="22" rx="2" style="fill:var(--danger-bg);stroke:var(--danger);stroke-width:1.5"/>
+          <text x="74" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--danger)">1</text>
+          <rect x="87" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="98" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
+          <rect x="111" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="122" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">0</text>
+          <rect x="135" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="146" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">0</text>
+          <rect x="159" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="170" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
+          <rect x="183" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
+          <text x="194" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
+          <text x="74" y="58" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--danger)">0 &#x2192; 1 flipped!</text>
+          <text x="110" y="76" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--body)">Transient fault: single-bit upset</text>
+          <text x="110" y="89" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">silent corruption, wrong computation</text>
+        </svg>
+      </div>
       <p>
         Soft errors are transient failures that do not permanently damage hardware but threaten reliability
         as chip integration density increases. Our goal is efficient architectural solutions
@@ -208,12 +302,12 @@
   <section id="services">
     <h2>Services</h2>
     <ul class="services-list">
-      <li>ASP-DAC 2024 TPC member and session chair</li>
+      <li>ASP-DAC TPC member: 2024 (session chair), 2025, 2026</li>
       <li>Conference and journal reviewer: CCS, DAC, ICCAD, DATE, IEEE TC, IEEE TDSC, IEEE TCAD, IEEE TVLSI</li>
     </ul>
   </section>
 
-  <footer>Last updated November 2024</footer>
+  <footer>Last updated June 2026</footer>
 
 </div><!-- end .page -->
 

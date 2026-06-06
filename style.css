@@ -20,6 +20,13 @@
   --code-bg: #f5f5f5;
   --link-hover-bg: #f9fafb;
   --news-callout-text: #1e40af;
+  --tc5: #0070f3;
+  --tc4: #2278d8;
+  --tc3: #5a8fc0;
+  --tc2: #8099b0;
+  --tc1: #a8b4be;
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
 }
 
 /* Reset */
@@ -155,6 +162,20 @@ section h2 {
   border-radius: 3px;
 }
 
+/* Research figure */
+.research-fig { float: right; margin: 0 0 8px 16px; line-height: 0; }
+.research-item::after { content: ""; display: table; clear: both; }
+
+/* Tag cloud */
+.tag-cloud-label { font-size: 11px; color: var(--muted); margin-top: 16px; margin-bottom: 6px; }
+.tag-cloud { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.tc { line-height: 1.4; }
+.tc-5 { color: var(--tc5); font-size: 40px; font-weight: 700; }
+.tc-4 { color: var(--tc4); font-size: 26px; font-weight: 600; }
+.tc-3 { color: var(--tc3); font-size: 17px; font-weight: 500; }
+.tc-2 { color: var(--tc2); font-size: 13px; font-weight: 400; }
+.tc-1 { color: var(--tc1); font-size: 10px; font-weight: 400; }
+
 /* Publications */
 .pub-item {
   display: flex;
@@ -205,29 +226,37 @@ footer {
   .hero { flex-direction: column; }
   .hero-photo { width: 80px; }
   .nav-links { gap: 14px; }
+  .research-fig { display: none; }
 }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #ffffff;
-    --body: #e5e5e5;
-    --muted: #999999;
-    --border: #222222;
-    --bg: #0a0a0a;
+    --text: #e6edf3;
+    --body: #c9d1d9;
+    --muted: #8b949e;
+    --border: #21262d;
+    --bg: #0d1117;
     --tag-bg: #1e3a5f;
     --news-bg: #1e3a5f;
     --news-border: #1e40af;
     --amber-bg: #2d2000;
     --amber-border: #7c5a00;
     --btn-border: #374151;
-    --border-photo: #333333;
-    --border-light: #1a1a1a;
-    --border-lighter: #1a1a1a;
+    --border-photo: #30363d;
+    --border-light: #161b22;
+    --border-lighter: #161b22;
     --text-secondary: #cccccc;
     --text-tertiary: #aaaaaa;
     --code-bg: #1a1a1a;
     --link-hover-bg: #111111;
     --news-callout-text: #93c5fd;
+    --tc5: #93c5fd;
+    --tc4: #78b0ec;
+    --tc3: #6098c8;
+    --tc2: #5a80a0;
+    --tc1: #506878;
+    --danger: #f87171;
+    --danger-bg: #2d1010;
   }
 }
