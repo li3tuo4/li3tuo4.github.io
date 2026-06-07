@@ -164,6 +164,7 @@ section h2 {
 
 /* Research figure */
 .research-fig { float: right; margin: 0 0 8px 16px; line-height: 0; }
+.research-fig svg { border-radius: 8px; box-shadow: 0 2px 12px rgba(140,70,40,0.18); }
 .research-item::after { content: ""; display: table; clear: both; }
 
 /* Tag cloud */

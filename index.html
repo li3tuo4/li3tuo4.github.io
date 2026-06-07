@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tuo Li — Associate Professor at ICT CAS. Research in computer architecture, processor security, and RISC-V. Trustworthy and resilient computing.">
+  <meta name="description" content="Tuo Li — Associate Professor at ICT CAS. Research in trusted computing, RISC-V security, microarchitectural side-channel defense, and dependable processor design.">
   <title>Tuo Li</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230070f3'/><text x='50' y='68' font-family='Arial' font-weight='bold' font-size='44' fill='white' text-anchor='middle'>TL</text></svg>">
@@ -51,8 +51,7 @@
   <section id="news">
     <h2>News</h2>
     <div class="news-callout">
-      <strong>We are hiring!</strong> Looking for postdoc, junior or early-stage researchers,
-      and postgraduate interns interested in processor security. Please get in touch.
+      <strong>We are hiring!</strong> Looking for research students interested in processor security and trusted computing. Please get in touch.
     </div>
   </section>
 
@@ -60,50 +59,19 @@
   <section id="about">
     <h2>About</h2>
     <p class="about-text">
-      I am an Associate Professor in the State Key Lab of Processors
-      (previously known as the State Key Lab of Computer Architecture),
-      at the <a href="http://english.ict.cas.cn/" rel="noopener noreferrer">Institute of Computing Technology (ICT), CAS</a>.
-      I received a PhD in Computer Science and Engineering
-      from the <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" rel="noopener noreferrer">University of New South Wales (UNSW)</a> in 2014,
-      under the supervision of
-      <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/sri-parameswaran.html" rel="noopener noreferrer">Prof. Sri Parameswaran</a>.
-      Before joining ICT CAS, I was affiliated to
-      <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" rel="noopener noreferrer">UNSW CSE</a> and
-      <a href="https://www.unsw.edu.au/research/ifcyber" rel="noopener noreferrer">UNSW IFCYBER</a> (Research Fellow),
-      where I worked as the Tech Lead and Secondary Investigator on
-      two trustworthy computer architecture projects with DSTG Australia.
+      I am an Associate Professor in the State Key Lab of Processors at the
+      <a href="http://english.ict.cas.cn/" rel="noopener noreferrer">Institute of Computing Technology (ICT), Chinese Academy of Sciences</a>.
+      My current research is centered on trusted computing,
+      with broader interests in RISC-V ISA security extensions, microarchitectural side-channel defenses,
+      and soft-error resilience for safety-critical systems.
+      I received my PhD in Computer Science and Engineering from the
+      <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" rel="noopener noreferrer">University of New South Wales (UNSW)</a> in 2014,
+      supervised by <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/sri-parameswaran.html" rel="noopener noreferrer">Prof. Sri Parameswaran</a>.
+      Before joining ICT CAS, I was a Research Fellow at
+      <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" rel="noopener noreferrer">UNSW CSE</a> /
+      <a href="https://www.unsw.edu.au/research/ifcyber" rel="noopener noreferrer">IFCYBER</a>,
+      where I served as Tech Lead on two trustworthy computer architecture projects funded by DSTG Australia.
     </p>
-    <p class="tag-cloud-label">Keywords from publications:</p>
-    <div class="tag-cloud">
-      <span class="tc tc-1">FPGA</span>
-      <span class="tc tc-3">Memory Safety</span>
-      <span class="tc tc-1">Genomics</span>
-      <span class="tc tc-5">Soft-Error Resilience</span>
-      <span class="tc tc-2">Timing Isolation</span>
-      <span class="tc tc-1">ORAM</span>
-      <span class="tc tc-4">Checkpoint Recovery</span>
-      <span class="tc tc-2">Cache Timing Attacks</span>
-      <span class="tc tc-3">RISC-V</span>
-      <span class="tc tc-1">Approximate Computing</span>
-      <span class="tc tc-3">Side-Channel Security</span>
-      <span class="tc tc-1">Performance Monitoring</span>
-      <span class="tc tc-4">Embedded Processors</span>
-      <span class="tc tc-2">Fault Tolerance</span>
-      <span class="tc tc-1">Radiation Effects</span>
-      <span class="tc tc-3">Multicore Systems</span>
-      <span class="tc tc-2">Hardware Trojan</span>
-      <span class="tc tc-1">Computer Architecture</span>
-      <span class="tc tc-2">Microarchitecture</span>
-      <span class="tc tc-1">ISA Extension</span>
-      <span class="tc tc-2">Transient Execution</span>
-      <span class="tc tc-1">Hardware Security</span>
-      <span class="tc tc-1">Safety-Critical</span>
-      <span class="tc tc-2">Error Correction</span>
-      <span class="tc tc-1">Vulnerability</span>
-      <span class="tc tc-1">TMR</span>
-      <span class="tc tc-1">Secure Computing</span>
-      <span class="tc tc-1">Automotive</span>
-    </div>
   </section>
 
   <!-- Research -->
@@ -111,29 +79,50 @@
     <h2>Research</h2>
 
     <div class="research-item">
+      <h3>Trusted Computing</h3>
+      <div class="research-fig">
+        <svg viewBox="0 0 220 96" width="220" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="220" height="96" rx="8" fill="#ecb5a2"/>
+          <!-- OS/App: topmost, faded/narrow -->
+          <rect x="64" y="7" width="92" height="17" rx="8.5" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5" opacity="0.45"/>
+          <text x="110" y="19" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#231f1c" opacity="0.5">OS / App — ? unverified</text>
+          <!-- Break marker -->
+          <text x="110" y="35" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#c0392b">✗</text>
+          <!-- Firmware: danger outline, medium width -->
+          <rect x="38" y="38" width="144" height="20" rx="10" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+          <text x="110" y="52" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#c0392b" font-weight="600">Firmware tampered</text>
+          <!-- HW RoT: widest, bold, foundation -->
+          <rect x="14" y="66" width="192" height="22" rx="11" fill="#fff9f6" stroke="#231f1c" stroke-width="2.5"/>
+          <text x="110" y="81" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#231f1c" font-weight="700">Hardware Root of Trust</text>
+        </svg>
+      </div>
+      <p>
+        We are investigating hardware root of trust design targeting next-generation computing
+        across cloud, edge, and endpoint platforms. Our work covers secure boot, attestation,
+        and isolation primitives that establish a verifiable foundation for trusted execution on RISC-V. <em>Work in progress.</em>
+      </p>
+    </div>
+
+    <div class="research-item">
       <h3>RISC-V ISA for Memory Safety</h3>
       <div class="research-fig">
-        <svg viewBox="0 0 220 100" width="220" height="100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <text x="67" y="11" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">buffer[4]</text>
-          <rect x="4" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="18" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[0]</text>
-          <rect x="35" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="49" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[1]</text>
-          <rect x="66" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="80" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[2]</text>
-          <rect x="97" y="15" width="28" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="111" y="31" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">[3]</text>
-          <line x1="130" y1="9" x2="130" y2="43" style="stroke:var(--muted);stroke-width:1.5" stroke-dasharray="3,2"/>
-          <rect x="134" y="15" width="52" height="24" rx="2" style="fill:var(--danger-bg);stroke:var(--danger);stroke-width:1.5"/>
-          <text x="160" y="26" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--danger)">ret_addr</text>
-          <text x="160" y="36" text-anchor="middle" font-family="sans-serif" font-size="7" style="fill:var(--danger)">overwritten!</text>
-          <rect x="190" y="15" width="26" height="24" rx="2" style="fill:var(--tag-bg);stroke:var(--border);stroke-width:1"/>
-          <text x="203" y="31" text-anchor="middle" font-family="sans-serif" font-size="10" style="fill:var(--muted)">…</text>
-          <text x="4" y="57" font-family="monospace" font-size="9" style="fill:var(--body)">ptr</text>
-          <path d="M20 53 H152 M146 50 L152 53 L146 56" style="stroke:var(--danger);fill:none;stroke-width:1.5"/>
-          <text x="86" y="49" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--danger)">out-of-bounds write</text>
-          <text x="110" y="74" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--body)">Spatial memory safety violation</text>
-          <text x="110" y="85" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">pointer exceeds allocated object bounds</text>
+        <svg viewBox="0 0 220 86" width="220" height="86" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="220" height="86" rx="8" fill="#ecb5a2"/>
+          <!-- Buffer zone pill -->
+          <rect x="4" y="12" width="112" height="30" rx="15" fill="#fff9f6" stroke="#231f1c" stroke-width="2"/>
+          <text x="60" y="24" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#231f1c">buffer[4]</text>
+          <text x="60" y="36" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#6b5a52">allocated region</text>
+          <!-- Boundary -->
+          <line x1="120" y1="6" x2="120" y2="50" stroke="#231f1c" stroke-width="2" stroke-dasharray="4 2"/>
+          <!-- ret_addr danger zone -->
+          <rect x="128" y="12" width="86" height="30" rx="15" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+          <text x="171" y="24" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#c0392b">ret_addr</text>
+          <text x="171" y="36" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c0392b">✗ overwritten</text>
+          <!-- Overflow arrow -->
+          <path d="M18 52 Q70 66 128 34" fill="none" stroke="#c0392b" stroke-width="2"/>
+          <path d="M125 31 L128 34 L131 32" fill="none" stroke="#c0392b" stroke-width="2"/>
+          <!-- Caption -->
+          <text x="110" y="78" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#231f1c">out-of-bounds write corrupts return address</text>
         </svg>
       </div>
       <p>
@@ -152,22 +141,22 @@
     <div class="research-item">
       <h3>Microarchitectural Timing Channel Mitigation</h3>
       <div class="research-fig">
-        <svg viewBox="0 0 220 112" width="220" height="112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="4" y="6" width="86" height="32" rx="3" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1.5"/>
-          <text x="47" y="20" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">Victim Process</text>
-          <text x="47" y="32" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--blue)">access secret</text>
-          <rect x="130" y="6" width="86" height="32" rx="3" style="fill:var(--danger-bg);stroke:var(--danger);stroke-width:1.5"/>
-          <text x="173" y="20" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--danger)">Spy Process</text>
-          <text x="173" y="32" text-anchor="middle" font-family="monospace" font-size="8" style="fill:var(--danger)">&#x23F1; measure time</text>
-          <rect x="4" y="60" width="212" height="22" rx="3" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="110" y="74" text-anchor="middle" font-family="sans-serif" font-size="8.5" style="fill:var(--body)">Shared Last-Level Cache</text>
-          <line x1="47" y1="38" x2="47" y2="60" style="stroke:var(--blue);stroke-width:1.5"/>
-          <path d="M44 57 L47 60 L50 57" style="stroke:var(--blue);fill:none;stroke-width:1.5"/>
-          <text x="56" y="52" font-family="sans-serif" font-size="7" style="fill:var(--blue)">load</text>
-          <line x1="173" y1="60" x2="173" y2="38" style="stroke:var(--danger);stroke-width:1.5" stroke-dasharray="3,2"/>
-          <path d="M170 41 L173 38 L176 41" style="stroke:var(--danger);fill:none;stroke-width:1.5"/>
-          <text x="155" y="52" font-family="sans-serif" font-size="7" style="fill:var(--danger)">infer!</text>
-          <text x="110" y="98" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--body)">Timing side channel via shared cache</text>
+        <svg viewBox="0 0 220 88" width="220" height="88" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="220" height="88" rx="8" fill="#ecb5a2"/>
+          <!-- Victim circle -->
+          <circle cx="80" cy="36" r="34" fill="#fff9f6" stroke="#231f1c" stroke-width="2"/>
+          <!-- Spy circle (overlaps, danger fill) -->
+          <circle cx="140" cy="36" r="34" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+          <!-- Labels in exclusive zones -->
+          <text x="58" y="32" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#231f1c">Victim</text>
+          <text x="58" y="44" text-anchor="middle" font-family="monospace" font-size="7" fill="#231f1c">secret</text>
+          <text x="162" y="32" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c0392b">Spy</text>
+          <text x="162" y="44" text-anchor="middle" font-family="monospace" font-size="7" fill="#c0392b">&#x23F1; infer</text>
+          <!-- Overlap label -->
+          <text x="110" y="33" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#231f1c">Shared</text>
+          <text x="110" y="43" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#231f1c">L1 Cache</text>
+          <!-- Caption -->
+          <text x="110" y="78" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#231f1c">timing side channel via shared L1 cache</text>
         </svg>
       </div>
       <p>
@@ -183,28 +172,28 @@
     <div class="research-item">
       <h3>Dependable Embedded Processors</h3>
       <div class="research-fig">
-        <svg viewBox="0 0 220 106" width="220" height="106" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <text x="74" y="11" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--danger)">&#x2604; particle hit</text>
-          <path d="M74 13 V20 M71 17 L74 20 L77 17" style="stroke:var(--danger);fill:none;stroke-width:1.5"/>
-          <rect x="15" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="26" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">0</text>
-          <rect x="39" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="50" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
-          <rect x="63" y="22" width="22" height="22" rx="2" style="fill:var(--danger-bg);stroke:var(--danger);stroke-width:1.5"/>
-          <text x="74" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--danger)">1</text>
-          <rect x="87" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="98" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
-          <rect x="111" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="122" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">0</text>
-          <rect x="135" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="146" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">0</text>
-          <rect x="159" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="170" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
-          <rect x="183" y="22" width="22" height="22" rx="2" style="fill:var(--tag-bg);stroke:var(--blue);stroke-width:1"/>
-          <text x="194" y="37" text-anchor="middle" font-family="monospace" font-size="10" style="fill:var(--blue)">1</text>
-          <text x="74" y="58" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--danger)">0 &#x2192; 1 flipped!</text>
-          <text x="110" y="76" text-anchor="middle" font-family="sans-serif" font-size="8" style="fill:var(--body)">Transient fault: single-bit upset</text>
-          <text x="110" y="89" text-anchor="middle" font-family="sans-serif" font-size="7.5" style="fill:var(--muted)">silent corruption, wrong computation</text>
+        <svg viewBox="0 0 220 100" width="220" height="100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="220" height="100" rx="8" fill="#ecb5a2"/>
+          <!-- Chip body -->
+          <rect x="58" y="12" width="104" height="58" rx="6" fill="#fff9f6" stroke="#231f1c" stroke-width="2.5"/>
+          <!-- Chip pins left -->
+          <rect x="50" y="22" width="8" height="5" rx="2" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5"/>
+          <rect x="50" y="35" width="8" height="5" rx="2" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5"/>
+          <rect x="50" y="48" width="8" height="5" rx="2" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5"/>
+          <!-- Chip pins right -->
+          <rect x="162" y="22" width="8" height="5" rx="2" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5"/>
+          <rect x="162" y="35" width="8" height="5" rx="2" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5"/>
+          <rect x="162" y="48" width="8" height="5" rx="2" fill="#fff9f6" stroke="#231f1c" stroke-width="1.5"/>
+          <!-- Flipped bit highlight inside chip -->
+          <rect x="88" y="26" width="44" height="28" rx="5" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+          <text x="110" y="43" text-anchor="middle" font-family="monospace" font-size="12" fill="#c0392b" font-weight="700">0→1</text>
+          <!-- Particle comet from top-right -->
+          <path d="M200 6 Q182 16 136 26" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="5 2"/>
+          <path d="M133 23 L136 26 L139 24" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+          <text x="204" y="12" font-family="sans-serif" font-size="11" fill="#c0392b">☄</text>
+          <!-- Caption -->
+          <text x="110" y="86" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#231f1c">transient fault: single-bit upset</text>
+          <text x="110" y="96" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#6b5a52">silent corruption, wrong computation</text>
         </svg>
       </div>
       <p>
@@ -238,18 +227,6 @@
 
     <div class="pub-item">
       <div>
-        <div class="pub-authors">Hsu-Kang Dow, Tuo Li, Sri Parameswaran</div>
-        <div class="pub-title">HWST128: Complete Memory Safety Accelerator on RISC-V with Metadata Compression</div>
-        <div class="pub-venue">DAC 2022: 709–714</div>
-      </div>
-      <div class="pub-links">
-        <a class="pub-link" href="https://li3tuo4.github.io/pub/dow-dac22.pdf" rel="noopener noreferrer">pdf</a>
-        <a class="pub-link" href="https://li3tuo4.github.io/pub/dow-dac22.bib" rel="noopener noreferrer">bib</a>
-      </div>
-    </div>
-
-    <div class="pub-item">
-      <div>
         <div class="pub-authors">Hsu-Kang Dow, Tuo Li, William Miles, Sri Parameswaran</div>
         <div class="pub-title">SHORE: Hardware/Software Method for Memory Safety Acceleration on RISC-V</div>
         <div class="pub-venue">DAC 2021: 289–294</div>
@@ -257,30 +234,6 @@
       <div class="pub-links">
         <a class="pub-link" href="https://li3tuo4.github.io/pub/dow-dac.pdf" rel="noopener noreferrer">pdf</a>
         <a class="pub-link" href="https://li3tuo4.github.io/pub/dow-dac.bib" rel="noopener noreferrer">bib</a>
-      </div>
-    </div>
-
-    <div class="pub-item">
-      <div>
-        <div class="pub-authors">Tuo Li, Bradley Hopkins, Sri Parameswaran</div>
-        <div class="pub-title">SIMF: Single-Instruction Multiple-Flush Mechanism for Processor Temporal Isolation</div>
-        <div class="pub-venue">ArXiv Preprint (2020)</div>
-      </div>
-      <div class="pub-links">
-        <a class="pub-link" href="https://li3tuo4.github.io/pub/li-arxiv.pdf" rel="noopener noreferrer">pdf</a>
-        <a class="pub-link" href="https://li3tuo4.github.io/pub/li-arxiv.bib" rel="noopener noreferrer">bib</a>
-      </div>
-    </div>
-
-    <div class="pub-item">
-      <div>
-        <div class="pub-authors">Tuo Li, Muhammad Shafique, Jude Angelo Ambrose, J&ouml;rg Henkel, Sri Parameswaran</div>
-        <div class="pub-title">Fine-Grained Checkpoint Recovery for Application-Specific Instruction-Set Processors</div>
-        <div class="pub-venue">IEEE Transactions on Computers 66(4): 647–660 (2017)</div>
-      </div>
-      <div class="pub-links">
-        <a class="pub-link" href="https://li3tuo4.github.io/pub/li-tc.pdf" rel="noopener noreferrer">pdf</a>
-        <a class="pub-link" href="https://li3tuo4.github.io/pub/li-tc.bib" rel="noopener noreferrer">bib</a>
       </div>
     </div>
 
@@ -296,6 +249,41 @@
       </div>
     </div>
 
+    <p style="font-size:13px;margin-top:10px;">
+      <a href="https://scholar.google.com/citations?user=x6tGFe8AAAAJ&hl=en" rel="noopener noreferrer">View full publication list →</a>
+    </p>
+
+    <p class="tag-cloud-label">Keywords from publications:</p>
+    <div class="tag-cloud">
+      <span class="tc tc-1">FPGA</span>
+      <span class="tc tc-3">Memory Safety</span>
+      <span class="tc tc-1">Genomics</span>
+      <span class="tc tc-5">Soft-Error Resilience</span>
+      <span class="tc tc-2">Timing Isolation</span>
+      <span class="tc tc-1">ORAM</span>
+      <span class="tc tc-4">Checkpoint Recovery</span>
+      <span class="tc tc-2">Cache Timing Attacks</span>
+      <span class="tc tc-3">RISC-V</span>
+      <span class="tc tc-1">Approximate Computing</span>
+      <span class="tc tc-3">Side-Channel Security</span>
+      <span class="tc tc-1">Performance Monitoring</span>
+      <span class="tc tc-4">Embedded Processors</span>
+      <span class="tc tc-2">Fault Tolerance</span>
+      <span class="tc tc-1">Radiation Effects</span>
+      <span class="tc tc-3">Multicore Systems</span>
+      <span class="tc tc-2">Hardware Trojan</span>
+      <span class="tc tc-1">Computer Architecture</span>
+      <span class="tc tc-2">Microarchitecture</span>
+      <span class="tc tc-1">ISA Extension</span>
+      <span class="tc tc-2">Transient Execution</span>
+      <span class="tc tc-1">Hardware Security</span>
+      <span class="tc tc-1">Safety-Critical</span>
+      <span class="tc tc-2">Error Correction</span>
+      <span class="tc tc-1">Vulnerability</span>
+      <span class="tc tc-1">TMR</span>
+      <span class="tc tc-1">Secure Computing</span>
+      <span class="tc tc-1">Automotive</span>
+    </div>
   </section>
 
   <!-- Services -->
@@ -311,14 +299,6 @@
 
 </div><!-- end .page -->
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134744460-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-134744460-1');
-</script>
 
 </body>
 </html>
